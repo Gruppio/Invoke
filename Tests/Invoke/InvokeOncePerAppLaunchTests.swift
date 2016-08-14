@@ -19,7 +19,7 @@ class InvokeOncePerAppLaunchTests: XCTestCase {
     func testSingleInvocation() {
         var numberOfInvocations = 0
         
-        Invoke.onceForAppLaunch(label: "invocation", handler: {
+        Invoke.onceForAppLaunch(label: "invocation1", handler: {
             numberOfInvocations += 1
         })()
         
@@ -30,7 +30,7 @@ class InvokeOncePerAppLaunchTests: XCTestCase {
     func testMultipleInvocations() {
         var numberOfInvocations = 0
         
-        let invocation = Invoke.onceForAppLaunch(label: "invocation") {
+        let invocation = Invoke.onceForAppLaunch(label: "invocation2") {
             numberOfInvocations += 1
         }
         
