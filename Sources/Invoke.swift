@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class Invoke {
+final public class Invoke {
     static var defaults: UserDefaults = UserDefaults.standard
     private static let syncronizationQueue = DispatchQueue(label: "com.gruppio.invoke")
     
@@ -27,15 +27,16 @@ final class Invoke {
     }
 }
 
+
 extension Invoke {
     class func onceForAppLaunch(label: String, handler: () -> Void) -> () -> Void {
         return {
             let numberOfInvocations = Invoke.invocations[label] ?? 0
-            guard numberOfInvocations == 0 else { return }
-            handler()
             defer {
                 invocations.updateValue(numberOfInvocations + 1, forKey: label)
             }
+            guard numberOfInvocations == 0 else { return }
+            handler()
         }
     }
 }
