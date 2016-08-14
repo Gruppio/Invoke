@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct InvocationCounterSinceEver {
+class InvocationCounterSinceEver {
     private var defaults: UserDefaults
     
     init(defaults: UserDefaults) {
         self.defaults = defaults
     }
     
-    init?() {
+    convenience init?() {
         guard let defaults = UserDefaults(suiteName: "com.gruppio.invoke.invocation_counter_since_ever") else { return nil }
         self.init(defaults: defaults)
     }
@@ -31,11 +31,11 @@ extension InvocationCounterSinceEver: InvocationCounter {
         return defaults.integer(forKey: label)
     }
     
-    mutating func invoked(label: String) {
+    func invoked(label: String) {
         defaults.set(numberOfInvocations(of: label) + 1, forKey: label)
     }
     
-    mutating func reset() {
+    func reset() {
         allInvocationsLabels.forEach() {
             defaults.set(0, forKey: $0)
         }
