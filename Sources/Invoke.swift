@@ -25,16 +25,17 @@ final class Invoke {
             }
         }
     }
-    
 }
 
 extension Invoke {
     class func onceForAppLaunch(label: String, handler: () -> Void) -> () -> Void {
         return {
-            guard let numberOfInvocations = Invoke.invocations[label] else { return }
+            let numberOfInvocations = Invoke.invocations[label] ?? 0
             guard numberOfInvocations == 0 else { return }
-            
-            invocations[label] += 1
+            handler()
+            defer {
+                invocations.updateValue(numberOfInvocations + 1, forKey: label)
+            }
         }
     }
 }
