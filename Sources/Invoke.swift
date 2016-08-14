@@ -28,7 +28,7 @@ final public class Invoke {
 }
 
 
-// MARK: Reset
+// MARK: Reset Data
 extension Invoke {
     public class func resetNonPersistantData() {
         invocations.removeAll()
@@ -36,32 +36,24 @@ extension Invoke {
 }
 
 
-// MARK: Once For App Lauch
+// MARK: Lauch based invocations
 extension Invoke {
-    public class func onceForAppLaunch(label: String, handler: () -> Void) -> () -> Void {
+    public class func whenInvocationsSinceLauch(label: String,
+                                                are shouldInvoke: (Int) -> Bool,
+                                                handler: () -> Void) -> () -> Void {
         return {
             let numberOfInvocations = Invoke.invocations[label] ?? 0
             defer {
                 invocations.updateValue(numberOfInvocations + 1, forKey: label)
             }
-            guard numberOfInvocations == 0 else { return }
-            handler()
-        }
-    }
-}
-
-extension Invoke {
-    public class func ifInvocationsSinceLauch(label: String,
-                                              forInvocations shouldExecute: (Int) -> Bool,
-                                              handler: () -> Void) -> () -> Void {
-        return {
-            let numberOfInvocations = Invoke.invocations[label] ?? 0
-            defer {
-                invocations.updateValue(numberOfInvocations + 1, forKey: label)
-            }
-            if shouldExecute(numberOfInvocations) {
+            if shouldInvoke(numberOfInvocations) {
                 handler()
             }
         }
     }
+
+    public class func onceEveryLaunch(label: String, handler: () -> Void) -> () -> Void {
+        return whenInvocationsSinceLauch(label: label, are: { $0 == 0 }, handler: handler)
+    }
 }
+

@@ -9,17 +9,17 @@
 import XCTest
 @testable import Invoke
 
-class InvokeOncePerAppLaunchTests: XCTestCase {
+class InvokeOnceEveryLaunchTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Invoke.invocations.removeAll()
+        Invoke.resetNonPersistantData()
     }
     
     func testSingleInvocation() {
         var numberOfInvocations = 0
         
-        Invoke.onceForAppLaunch(label: "invocation1", handler: {
+        Invoke.onceEveryLaunch(label: "invocation1", handler: {
             numberOfInvocations += 1
         })()
         
@@ -30,7 +30,7 @@ class InvokeOncePerAppLaunchTests: XCTestCase {
     func testMultipleInvocations() {
         var numberOfInvocations = 0
         
-        let invocation = Invoke.onceForAppLaunch(label: "invocation2") {
+        let invocation = Invoke.onceEveryLaunch(label: "invocation2") {
             numberOfInvocations += 1
         }
         
@@ -44,11 +44,11 @@ class InvokeOncePerAppLaunchTests: XCTestCase {
     func testMultipleInvocationsWithSameLabel() {
         var numberOfInvocations = 0
         
-        let invocation1 = Invoke.onceForAppLaunch(label: "invocation") {
+        let invocation1 = Invoke.onceEveryLaunch(label: "invocation") {
             numberOfInvocations += 1
         }
         
-        let invocation2 = Invoke.onceForAppLaunch(label: "invocation") {
+        let invocation2 = Invoke.onceEveryLaunch(label: "invocation") {
             numberOfInvocations += 2
         }
         
