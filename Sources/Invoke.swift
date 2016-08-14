@@ -57,3 +57,15 @@ extension Invoke {
     }
 }
 
+/*
+// MARK: Persistant invocations
+extension Invoke {
+    public class func whenInvocationsSinceEver(label: String,
+                                               are shouldInvoke: (Int) -> Bool,
+                                               handler: () -> Void) -> () -> Void {
+        return {
+            let
+        }
+    }
+}
+*/
