@@ -9,7 +9,7 @@
 import Foundation
 
 final public class Invoke {
-    static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
+    private static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
 }
 
 
