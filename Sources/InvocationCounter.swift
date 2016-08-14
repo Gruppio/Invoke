@@ -9,8 +9,8 @@
 import Foundation
 
 protocol InvocationCounter {
+    var allInvocationsLabels: [String] { get }
     func numberOfInvocations(of label: String) -> Int
-    func allInvocationsLabels() -> [String]
     mutating func invoked(label: String)
     mutating func reset()
 }

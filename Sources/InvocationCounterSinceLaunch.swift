@@ -26,12 +26,12 @@ struct InvocationCounterSinceLaunch {
 }
 
 extension InvocationCounterSinceLaunch: InvocationCounter {
-    func numberOfInvocations(of label: String) -> Int {
-        return invocations[label] ?? 0
+    var allInvocationsLabels: [String] {
+        return Array(invocations.keys)
     }
     
-    func allInvocationsLabels() -> [String] {
-        return Array(invocations.keys)
+    func numberOfInvocations(of label: String) -> Int {
+        return invocations[label] ?? 0
     }
     
     mutating func invoked(label: String) {
