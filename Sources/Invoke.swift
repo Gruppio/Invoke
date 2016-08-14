@@ -9,14 +9,23 @@
 import Foundation
 
 final class Invoke {
-    private static var _invocations = [String : Int]()
+    static var defaults: UserDefaults = UserDefaults.standard
     private static let syncronizationQueue = DispatchQueue(label: "com.gruppio.invoke")
+    
+    private static var _invocations = [String : Int]()
     class var invocations: [String : Int] {
         get {
-            return _invocations
+            return syncronizationQueue.sync {
+                return _invocations
+            }
+        }
+        set {
+            syncronizationQueue.async {
+                _invocations = newValue
+            }
         }
     }
-    static var defaults: UserDefaults = UserDefaults.standard
+    
 }
 
 extension Invoke {
@@ -25,7 +34,7 @@ extension Invoke {
             guard let numberOfInvocations = Invoke.invocations[label] else { return }
             guard numberOfInvocations == 0 else { return }
             
-            
+            invocations[label] += 1
         }
     }
 }
