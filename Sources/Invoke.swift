@@ -9,29 +9,14 @@
 import Foundation
 
 final public class Invoke {
-    static var defaults: UserDefaults = UserDefaults(suiteName: "Invoke") ?? UserDefaults.standard
-    private static let syncronizationQueue = DispatchQueue(label: "com.gruppio.invoke")
-    
-    private static var _invocations = [String : Int]()
-    class var invocations: [String : Int] {
-        get {
-            return syncronizationQueue.sync {
-                return _invocations
-            }
-        }
-        set {
-            syncronizationQueue.async {
-                _invocations = newValue
-            }
-        }
-    }
+    static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
 }
 
 
 // MARK: Reset Data
 extension Invoke {
     public class func resetNonPersistantData() {
-        invocations.removeAll()
+        invocationsCounterSinceLaunch.reset()
     }
 }
 
@@ -42,9 +27,9 @@ extension Invoke {
                                                 are shouldInvoke: (Int) -> Bool,
                                                 handler: () -> Void) -> () -> Void {
         return {
-            let numberOfInvocations = Invoke.invocations[label] ?? 0
+            let numberOfInvocations = invocationsCounterSinceLaunch.numberOfInvocations(of: label)
             defer {
-                invocations.updateValue(numberOfInvocations + 1, forKey: label)
+                invocationsCounterSinceLaunch.invoked(label: label)
             }
             if shouldInvoke(numberOfInvocations) {
                 handler()
