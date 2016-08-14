@@ -25,6 +25,7 @@ struct InvocationCounterSinceLaunch {
     }
 }
 
+// MARK: InvocationCounter
 extension InvocationCounterSinceLaunch: InvocationCounter {
     var allInvocationsLabels: [String] {
         return Array(invocations.keys)
