@@ -27,7 +27,7 @@ class InvocationCounterSinceLaunchTests: XCTestCase {
         let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 1)
-        XCTAssertEqual(invocationCounter.allInvocationsLabels.first!, label1)
+        XCTAssert(invocationCounter.allInvocationsLabels.contains(label1))
     }
     
     func testAllInvocationsLabelsAfterMultipleInvocations() {
