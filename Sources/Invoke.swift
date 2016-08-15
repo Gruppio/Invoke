@@ -14,7 +14,7 @@ final public class Invoke {
 }
 
 
-// MARK: Lauch based invocations
+// MARK: Number of Invocation Based
 extension Invoke {
     public class func onceEveryLaunch(label: String, handler: () -> Void) -> () -> Void {
         return whenInvocationsSinceLauch(label: label, are: { $0 == 0 }, handler: handler)
@@ -59,11 +59,27 @@ extension Invoke {
 }
 
 
+// MARK: Timer Based
+extension Invoke {
+    public class func every(label: String, _ seconds: Double, handler: () -> Void) -> (start: () -> Void, stop: () -> Void) {
+        let start: () -> Void = {
+            
+        }
+        
+        let stop: () -> Void = {
+            
+        }
+        return (start: start, stop: stop)
+    }
+}
+
+
 
 // MARK: Reset Data
 extension Invoke {
-    public class func resetNonPersistantData() {
+    public class func reset() {
         invocationsCounterSinceLaunch.reset()
+        invocationsCounterSinceEver.reset()
     }
 }
 
