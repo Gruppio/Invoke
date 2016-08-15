@@ -9,16 +9,8 @@
 import Foundation
 
 final public class Invoke {
-    private static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
-    private static var invocationsCounterSinceEver: InvocationCounter = InvocationCounterSinceEver()!
-}
-
-
-// MARK: Reset Data
-extension Invoke {
-    public class func resetNonPersistantData() {
-        invocationsCounterSinceLaunch.reset()
-    }
+    static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
+    static var invocationsCounterSinceEver: InvocationCounter = InvocationCounterSinceEver()
 }
 
 
@@ -63,6 +55,15 @@ extension Invoke {
                 handler()
             }
         }
+    }
+}
+
+
+
+// MARK: Reset Data
+extension Invoke {
+    public class func resetNonPersistantData() {
+        invocationsCounterSinceLaunch.reset()
     }
 }
 

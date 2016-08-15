@@ -24,14 +24,14 @@ class InvocationCounterSinceLaunchTests: XCTestCase {
     }
     
     func testAllInvocationsLabelsAfterOneInvocation() {
-        var invocationCounter = createInvocationCounter()
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 1)
         XCTAssertEqual(invocationCounter.allInvocationsLabels.first!, label1)
     }
     
     func testAllInvocationsLabelsAfterMultipleInvocations() {
-        var invocationCounter = createInvocationCounter()
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label2)
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 2)
@@ -45,20 +45,20 @@ class InvocationCounterSinceLaunchTests: XCTestCase {
     }
     
     func testNumberOfInvocationsAfterOneInvocation() {
-        var invocationCounter = createInvocationCounter()
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 1)
     }
     
     func testNumberOfInvocationsAfterMultipleInvocation() {
-        var invocationCounter = createInvocationCounter()
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label1)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 2)
     }
     
     func testNumberOfInvocationsAfterDifferentsInvocation() {
-        var invocationCounter = createInvocationCounter()
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label2)
         invocationCounter.invoked(label: label1)
@@ -68,14 +68,14 @@ class InvocationCounterSinceLaunchTests: XCTestCase {
     }
     
     func testResetWithNoInvocations() {
-        var invocationCounter = createInvocationCounter()
+        let invocationCounter = createInvocationCounter()
         invocationCounter.reset()
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 0)
     }
     
     func testResetAfterOneInvocation() {
-        var invocationCounter = createInvocationCounter()
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         invocationCounter.reset()
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
@@ -83,7 +83,7 @@ class InvocationCounterSinceLaunchTests: XCTestCase {
     }
     
     func testResetAfterMultipleDifferentInvocations() {
-        var invocationCounter = createInvocationCounter()
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label2)
         invocationCounter.invoked(label: label1)

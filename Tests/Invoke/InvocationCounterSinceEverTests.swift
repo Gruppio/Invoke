@@ -15,7 +15,8 @@ class InvocationCounterSinceEverTests: XCTestCase {
     let label2 = "label2"
     
     func createInvocationCounter() -> InvocationCounter {
-        return InvocationCounterSinceEver()!
+        UserDefaults
+        var invocationCounter = InvocationCounterSinceEver()!
     }
     
     func testAllInvocationsLabelsWithNoInvocations() {

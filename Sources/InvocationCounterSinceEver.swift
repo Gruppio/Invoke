@@ -15,9 +15,8 @@ class InvocationCounterSinceEver {
         self.defaults = defaults
     }
     
-    convenience init?() {
-        guard let defaults = UserDefaults(suiteName: "com.gruppio.invoke.invocation_counter_since_ever") else { return nil }
-        self.init(defaults: defaults)
+    convenience init() {
+        self.init(defaults: UserDefaults.standard)
     }
 }
 
@@ -33,11 +32,13 @@ extension InvocationCounterSinceEver: InvocationCounter {
     
     func invoked(label: String) {
         defaults.set(numberOfInvocations(of: label) + 1, forKey: label)
+        defaults.synchronize()
     }
     
     func reset() {
         allInvocationsLabels.forEach() {
             defaults.set(0, forKey: $0)
         }
+        defaults.synchronize()
     }
 }
