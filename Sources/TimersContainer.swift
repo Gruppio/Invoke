@@ -11,18 +11,21 @@ import Foundation
 class TimersContainer {
     private var timers = [String : Timer]()
     
-    func timer(forKey key: String) -> Timer? {
+    func getTimer(forKey key: String) -> Timer? {
         return timers[key]
     }
     
-    func invalidate(timerforKey key: String) {
-        if let timer = timer(forKey: key) {
-            timer.invalidate()
-        }
+    func invalidateTimer(forKey key: String) {
+        timers[key]?.invalidate()
     }
     
-    func add(timer: Timer, for key: String) {
-        invalidate(timerforKey: key)
+    func add(timer: Timer, forKey key: String) {
+        invalidateTimer(forKey: key)
         timers[key] = timer
     }
-}
+    
+    func removeTimer(forKey key: String) {
+        invalidateTimer(forKey: key)
+        timers.removeValue(forKey: key)
+    }
+ }
