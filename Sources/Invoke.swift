@@ -9,9 +9,10 @@
 import Foundation
 
 open class Invoke {
-    static var timersContainer = TimersContainer()
     static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
     static var invocationsCounterSinceEver: InvocationCounter = InvocationCounterSinceEver()
+    static var timersContainer = TimersContainer()
+    static var handlersContainer = HandlersContainer()
 }
 
 
@@ -64,20 +65,17 @@ extension Invoke {
 extension Invoke {
     open class func every(label: String, _ timeInterval: TimeInterval, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
         let start: () -> Void = {
-            if #available(OSX 10.12, *) {
-                let timer = Timer(timeInterval: timeInterval, repeats: true, block: { _ in
-                    handler()
-                })
-                timersContainer.add(timer: timer, for: label)
-            } else {
-                // Fallback on earlier versions
-            }
+            let timer = Timer.scheduledTimer(timeInterval: timeInterval, target: Invoke.self, selector: #selector(Invoke.timerTimedOut(label:)), userInfo: label, repeats: true)
+            timersContainer.add(timer: timer, forKey: label)
         }
         
         let stop: () -> Void = {
-            timersContainer.invalidate(timerforKey: label)
         }
         return (start: start, stop: stop)
+    }
+    
+    @objc private class func timerTimedOut(label: String) {
+        print(label)
     }
 }
 
