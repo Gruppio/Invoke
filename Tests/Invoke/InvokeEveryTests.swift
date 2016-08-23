@@ -12,7 +12,7 @@ import XCTest
 class InvokeEveryTests: XCTestCase {
     
     func testBase() {
-        let timer = Invoke.every(label: "suca", 0.1) {
+        let timer = Invoke.every(label: "suca", 0.000001) {
             print("Suca2")
         }
         

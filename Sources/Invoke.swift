@@ -63,19 +63,33 @@ extension Invoke {
 
 // MARK: Timer Based
 extension Invoke {
-    open class func every(label: String, _ timeInterval: TimeInterval, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
+    open class func every(label: String, _ timeInterval: TimeInterval, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void, release: () -> Void) {
+        
+        let timer = Timer.scheduledTimer(timeInterval: timeInterval, target: Invoke.self, selector: #selector(Invoke.timerTimedOut(timer:)), userInfo: label, repeats: true)
+        timersContainer.add(timer: timer, forKey: label)
+        handlersContainer.add(handler: handler, forKey: label)
+        
         let start: () -> Void = {
-            let timer = Timer.scheduledTimer(timeInterval: timeInterval, target: Invoke.self, selector: #selector(Invoke.timerTimedOut(label:)), userInfo: label, repeats: true)
-            timersContainer.add(timer: timer, forKey: label)
+            timersContainer.getTimer(forKey: label)?.fire()
         }
         
         let stop: () -> Void = {
+            timersContainer.invalidateTimer(forKey: label)
         }
-        return (start: start, stop: stop)
+        
+        let release: () -> Void = {
+            timersContainer.removeTimer(forKey: label)
+            handlersContainer.removeHandler(forKey: label)
+        }
+        
+        return (start: start, stop: stop, release: release)
     }
     
-    @objc private class func timerTimedOut(label: String) {
-        print(label)
+    @objc private class func timerTimedOut(timer: Timer) {
+        if let label = timer.userInfo as? String,
+            let handler = handlersContainer.getHandler(forKey: label) {
+            handler()
+        }
     }
 }
 
