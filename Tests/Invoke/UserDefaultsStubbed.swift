@@ -10,13 +10,13 @@ import Foundation
 
 public class UserDefaultsStubbed : UserDefaults {
     
-    var storedData = [String : AnyObject]()
+    var storedData = [String : Any]()
     
     public override var attributeKeys: [String] {
         return Array(storedData.keys)
     }
     
-    public override func object(forKey defaultName: String) -> AnyObject? {
+    public override func object(forKey defaultName: String) -> Any? {
         return storedData[defaultName]
     }
         
@@ -28,12 +28,12 @@ public class UserDefaultsStubbed : UserDefaults {
         return storedData[defaultName] as? String
     }
     
-    public override func array(forKey defaultName: String) -> [AnyObject]? {
-        return storedData[defaultName] as? [AnyObject]
+    public override func array(forKey defaultName: String) -> [Any]? {
+        return storedData[defaultName] as? [Any]
     }
 
-    public override func dictionary(forKey defaultName: String) -> [String : AnyObject]? {
-        return storedData[defaultName] as? [String : AnyObject]
+    public override func dictionary(forKey defaultName: String) -> [String : Any]? {
+        return storedData[defaultName] as? [String : Any]
     }
 
     public override func data(forKey defaultName: String) -> Data? {
@@ -65,7 +65,7 @@ public class UserDefaultsStubbed : UserDefaults {
         return storedData[defaultName] as? URL
     }
     
-    public override func set(_ value: AnyObject?, forKey defaultName: String) {
+    public override func set(_ value: Any?, forKey defaultName: String) {
         storedData[defaultName] = value
     }
     
@@ -90,7 +90,7 @@ public class UserDefaultsStubbed : UserDefaults {
         storedData[defaultName] = url
     }
     
-    public override func dictionaryRepresentation() -> [String : AnyObject] {
+    public override func dictionaryRepresentation() -> [String : Any] {
         return storedData
     }
     

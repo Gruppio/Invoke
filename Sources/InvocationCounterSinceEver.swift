@@ -9,7 +9,7 @@
 import Foundation
 
 class InvocationCounterSinceEver {
-    private var defaults: UserDefaults
+    var defaults: UserDefaults
     
     init(defaults: UserDefaults) {
         self.defaults = defaults
