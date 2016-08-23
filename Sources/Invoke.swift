@@ -8,7 +8,7 @@
 
 import Foundation
 
-final public class Invoke {
+open class Invoke {
     static var timersContainer = TimersContainer()
     static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
     static var invocationsCounterSinceEver: InvocationCounter = InvocationCounterSinceEver()
@@ -17,11 +17,11 @@ final public class Invoke {
 
 // MARK: Number of Invocation Based
 extension Invoke {
-    public class func onceEveryLaunch(label: String, handler: @escaping () -> Void) -> () -> Void {
+    open class func onceEveryLaunch(label: String, handler: @escaping () -> Void) -> () -> Void {
         return whenInvocationsSinceLauch(label: label, are: { $0 == 0 }, handler: handler)
     }
     
-    public class func whenInvocationsSinceLauch(label: String,
+    open class func whenInvocationsSinceLauch(label: String,
                                                 are shouldInvoke: @escaping (Int) -> Bool,
                                                 handler: @escaping () -> Void) -> () -> Void {
         return whenInvocations(invocationsCounter: invocationsCounterSinceLaunch,
@@ -30,11 +30,11 @@ extension Invoke {
                                           handler: handler)
     }
     
-    public class func onceForever(label: String, handler: @escaping () -> Void) -> () -> Void {
+    open class func onceForever(label: String, handler: @escaping () -> Void) -> () -> Void {
         return whenInvocationsSinceEver(label: label, are: { $0 == 0 }, handler: handler)
     }
 
-    public class func whenInvocationsSinceEver(label: String,
+    open class func whenInvocationsSinceEver(label: String,
                                                 are shouldInvoke: @escaping (Int) -> Bool,
                                                 handler: @escaping () -> Void) -> () -> Void {
         return whenInvocations(invocationsCounter: invocationsCounterSinceEver,
@@ -62,7 +62,7 @@ extension Invoke {
 
 // MARK: Timer Based
 extension Invoke {
-    public class func every(label: String, _ timeInterval: TimeInterval, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
+    open class func every(label: String, _ timeInterval: TimeInterval, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
         let start: () -> Void = {
             if #available(OSX 10.12, *) {
                 let timer = Timer(timeInterval: timeInterval, repeats: true, block: { _ in
@@ -87,7 +87,7 @@ extension Invoke {
 
 // MARK: Reset Data
 extension Invoke {
-    public class func reset() {
+    open class func reset() {
         invocationsCounterSinceLaunch.reset()
         invocationsCounterSinceEver.reset()
     }
