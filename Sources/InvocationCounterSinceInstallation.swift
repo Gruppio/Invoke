@@ -9,9 +9,9 @@
 import Foundation
 
 class InvocationCounterSinceInstallation {
-    var defaults: UserDefaults
-    let kInvocationsLabels = "invoke.kInvocationsLabels"
-    let kInvocationsCountPrefix = "invoke.kInvocationsLabelsCount."
+    fileprivate var defaults: UserDefaults
+    fileprivate let kInvocationsLabels = "invoke.kInvocationsLabels"
+    fileprivate let kInvocationsCountPrefix = "invoke.kInvocationsLabelsCount."
     
     init(defaults: UserDefaults) {
         self.defaults = defaults

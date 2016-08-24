@@ -9,16 +9,34 @@
 import Foundation
 
 class InvocationCounterSinceEver {
-    let kInvocationsLabels = "invoke.kInvocationsLabels"
-    let kInvocationsCountPrefix = "invoke.kInvocationsLabelsCount."
+    fileprivate let kInvocationPrefix = "invoke"
+    
+    fileprivate let kInvocationsLabels = "kInvocationsLabels"
+    fileprivate let kInvocationsCountPrefix = "kInvocationsLabelsCount."
+    
+    fileprivate var keychain: KeychainSwift
+    
+    init() {
+        keychain = KeychainSwift(keyPrefix: kInvocationPrefix)
+    }
+    
 }
 
 // MARK: InvocationCounter
 extension InvocationCounterSinceEver: InvocationCounter {
     var allInvocationsLabels: [String] {
-        return []
+        get {
+            if let invocationsLabels = keychain.getStringArray(kInvocationsLabels) {
+                return invocationsLabels
+            }
+            else {
+                return []
+            }
+        }
+        set {
+            keychain.set(newValue, forKey: kInvocationsLabels)
+        }
     }
-    
     func numberOfInvocations(of label: String) -> Int {
         return 0
     }
