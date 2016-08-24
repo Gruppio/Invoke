@@ -8,38 +8,25 @@
 
 import Foundation
 
-/*class InvocationCounterSinceEver {
-    var defaults: UserDefaults
-    
-    init(defaults: UserDefaults) {
-        self.defaults = defaults
-    }
-    
-    convenience init() {
-        self.init(defaults: UserDefaults.standard)
-    }
+class InvocationCounterSinceEver {
+    let kInvocationsLabels = "invoke.kInvocationsLabels"
+    let kInvocationsCountPrefix = "invoke.kInvocationsLabelsCount."
 }
 
 // MARK: InvocationCounter
 extension InvocationCounterSinceEver: InvocationCounter {
     var allInvocationsLabels: [String] {
-        return defaults.attributeKeys
+        return []
     }
     
     func numberOfInvocations(of label: String) -> Int {
-        return defaults.integer(forKey: label)
+        return 0
     }
     
     func invoked(label: String) {
-        defaults.set(numberOfInvocations(of: label) + 1, forKey: label)
-        defaults.synchronize()
     }
     
     func reset() {
-        allInvocationsLabels.forEach() {
-            defaults.removeObject(forKey: $0)
-        }
-        defaults.synchronize()
     }
+    
 }
-*/

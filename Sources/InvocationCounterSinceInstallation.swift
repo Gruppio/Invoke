@@ -24,12 +24,18 @@ class InvocationCounterSinceInstallation {
 
 // MARK: InvocationCounter
 extension InvocationCounterSinceInstallation: InvocationCounter {
+    
     var allInvocationsLabels: [String] {
-        if let invocationsLabels = defaults.stringArray(forKey: kInvocationsLabels) {
-            return invocationsLabels
+        get {
+            if let invocationsLabels = defaults.stringArray(forKey: kInvocationsLabels) {
+                return invocationsLabels
+            }
+            else {
+                return []
+            }
         }
-        else {
-            return []
+        set {
+            defaults.set(newValue, forKey: kInvocationsLabels)
         }
     }
     
@@ -38,11 +44,15 @@ extension InvocationCounterSinceInstallation: InvocationCounter {
     }
     
     func invoked(label: String) {
+        if !allInvocationsLabels.contains(label) {
+            allInvocationsLabels.append(label)
+        }
         defaults.set(numberOfInvocations(of: label) + 1, forKey: kInvocationsCountPrefix+label)
         defaults.synchronize()
     }
     
     func reset() {
+        allInvocationsLabels.forEach({ defaults.removeObject(forKey: kInvocationsCountPrefix+$0) })
         defaults.removeObject(forKey: kInvocationsLabels)
         defaults.synchronize()
     }
