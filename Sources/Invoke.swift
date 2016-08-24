@@ -11,8 +11,8 @@ import Foundation
 open class Invoke {
     static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
     static var invocationsCounterSinceEver: InvocationCounter = InvocationCounterSinceEver()
+    static var handlersContainer: HandlersContainer = StrongHandlersContainer()
     static var timersContainer = TimersContainer()
-    static var handlersContainer = HandlersContainer()
 }
 
 

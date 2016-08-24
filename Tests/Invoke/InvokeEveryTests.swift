@@ -11,27 +11,15 @@ import XCTest
 
 class InvokeEveryTests: XCTestCase {
     
-    func testBase() {
-        let timer = Invoke.every(label: "suca", 0.000001) {
-            print("Suca2")
+    let label = "invoke_every_test"
+    
+    func testTimerInvocationsWorks() {
+        var handlerInvoked = false
+        let timer = Invoke.every(label: label, 0.000001) {
+            handlerInvoked = true
         }
         
         timer.start()
-        
-        sleep(1)
-        print("Aaaaasasajchgsidvghdivehfivuehivuehvlehvoeuywghvoeiruygvhieuyhvieuyohvuyiehvfiephvihpfipvuhirpuwvbhwipfhebvihpw")
-        
-        sleep(1)
-        print("Aaaaasasajchgsidvghdivehfivuehivuehvlehvoeuywghvoeiruygvhieuyhvieuyohvuyiehvfiephvihpfipvuhirpuwvbhwipfhebvihpw")
-        
-        sleep(1)
-        print("Aaaaasasajchgsidvghdivehfivuehivuehvlehvoeuywghvoeiruygvhieuyhvieuyohvuyiehvfiephvihpfipvuhirpuwvbhwipfhebvihpw")
-    }
-    
-    func testA() {
-        print("Aaaaasasajchgsidvghdivehfivuehivuehvlehvoeuywghvoeiruygvhieuyhvieuyohvuyiehvfiephvihpfipvuhirpuwvbhwipfhebvihpw")
-        print("Aaaaasasajchgsidvghdivehfivuehivuehvlehvoeuywghvoeiruygvhieuyhvieuyohvuyiehvfiephvihpfipvuhirpuwvbhwipfhebvihpw")
-        print("Aaaaasasajchgsidvghdivehfivuehivuehvlehvoeuywghvoeiruygvhieuyhvieuyohvuyiehvfiephvihpfipvuhirpuwvbhwipfhebvihpw")
-        print("Aaaaasasajchgsidvghdivehfivuehivuehvlehvoeuywghvoeiruygvhieuyhvieuyohvuyiehvfiephvihpfipvuhirpuwvbhwipfhebvihpw")
+        XCTAssertEqual(handlerInvoked, true)
     }
 }

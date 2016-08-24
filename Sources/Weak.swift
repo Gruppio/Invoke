@@ -11,7 +11,7 @@ import Foundation
 final class Weak<T: AnyObject> {
     weak var object: AnyObject?
     
-    init(object: AnyObject) {
+    init(_ object: AnyObject) {
         self.object = object
     }
 }

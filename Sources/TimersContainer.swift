@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TimersContainer {
+final class TimersContainer {
     private var timers = [String : Timer]()
     
     func getTimer(forKey key: String) -> Timer? {
