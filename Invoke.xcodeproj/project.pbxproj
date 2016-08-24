@@ -22,6 +22,7 @@
 		71C4EA8D1D6CF42A009D751D /* InvokeEveryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C4EA8C1D6CF42A009D751D /* InvokeEveryTests.swift */; };
 		71DB3F041D6DB041000616CF /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DB3F031D6DB041000616CF /* Weak.swift */; };
 		BC7BF1D91D6DED56004C2013 /* InvocationCounterSinceInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BF1D81D6DED56004C2013 /* InvocationCounterSinceInstallation.swift */; };
+		BC7BF1DB1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BF1DA1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift */; };
 		_LinkFileRef_Invoke_via_InvokeTestSuite /* Invoke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Invoke" /* Invoke.framework */; };
 		__src_cc_ref_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		71C4EA8C1D6CF42A009D751D /* InvokeEveryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvokeEveryTests.swift; sourceTree = "<group>"; };
 		71DB3F031D6DB041000616CF /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		BC7BF1D81D6DED56004C2013 /* InvocationCounterSinceInstallation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceInstallation.swift; sourceTree = "<group>"; };
+		BC7BF1DA1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceEverTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Invoke.xcodeproj/Configs/Project.xcconfig /* Invoke.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Invoke.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_InvokeTestSuite_Info.plist /* Invoke.xcodeproj/InvokeTestSuite_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Invoke.xcodeproj/InvokeTestSuite_Info.plist; sourceTree = SOURCE_ROOT; };
 		__PBXFileRef_Invoke_Info.plist /* Invoke.xcodeproj/Invoke_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Invoke.xcodeproj/Invoke_Info.plist; sourceTree = SOURCE_ROOT; };
@@ -151,6 +153,7 @@
 				714C44061D60A6B500683F7D /* InvokeOnceEveryLaunchTests.swift */,
 				714C440C1D60CE6000683F7D /* InvocationCounterSinceLaunchTests.swift */,
 				714C44101D60DC6B00683F7D /* InvocationCounterSinceInstallationTests.swift */,
+				BC7BF1DA1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift */,
 				719012F11D62131400A19FB7 /* UserDefaultsStubbed.swift */,
 				71C4EA8C1D6CF42A009D751D /* InvokeEveryTests.swift */,
 			);
@@ -262,6 +265,7 @@
 				714C44071D60A6B500683F7D /* InvokeOnceEveryLaunchTests.swift in Sources */,
 				71C4EA8D1D6CF42A009D751D /* InvokeEveryTests.swift in Sources */,
 				__src_cc_ref_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift in Sources */,
+				BC7BF1DB1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift in Sources */,
 				719012F21D62131400A19FB7 /* UserDefaultsStubbed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
