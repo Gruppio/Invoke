@@ -22,32 +22,19 @@ extension Invoke {
         return whenInvocationsSinceLauch(label: label, are: { $0 == 0 }, handler: handler)
     }
     
-    open class func whenInvocationsSinceLauch(label: String,
-                                                are shouldInvoke: @escaping (Int) -> Bool,
-                                                handler: @escaping () -> Void) -> () -> Void {
-        return whenInvocations(invocationsCounter: invocationsCounterSinceLaunch,
-                                          label: label,
-                                          are: shouldInvoke,
-                                          handler: handler)
+    open class func whenInvocationsSinceLauch(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+        return handleInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, are: shouldInvoke, handler: handler)
     }
     
     open class func onceForever(label: String, handler: @escaping () -> Void) -> () -> Void {
         return whenInvocationsSinceEver(label: label, are: { $0 == 0 }, handler: handler)
     }
-
-    open class func whenInvocationsSinceEver(label: String,
-                                                are shouldInvoke: @escaping (Int) -> Bool,
-                                                handler: @escaping () -> Void) -> () -> Void {
-        return whenInvocations(invocationsCounter: invocationsCounterSinceEver,
-                                          label: label,
-                                          are: shouldInvoke,
-                                          handler: handler)
+    
+    open class func whenInvocationsSinceEver(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+        return handleInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, are: shouldInvoke, handler: handler)
     }
     
-    private class func whenInvocations(invocationsCounter: InvocationCounter,
-                                                  label: String,
-                                                  are shouldInvoke: @escaping (Int) -> Bool,
-                                                  handler: @escaping () -> Void) -> () -> Void {
+    private class func handleInvocation(invocationsCounter: InvocationCounter, label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
         return {
             let numberOfInvocations = invocationsCounter.numberOfInvocations(of: label)
             defer {
@@ -64,7 +51,6 @@ extension Invoke {
 // MARK: Timer Based
 extension Invoke {
     open class func every(label: String, _ timeInterval: TimeInterval, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void, release: () -> Void) {
-        
         let timer = Timer.scheduledTimer(timeInterval: timeInterval, target: Invoke.self, selector: #selector(Invoke.timerTimedOut(timer:)), userInfo: label, repeats: true)
         timersContainer.add(timer: timer, forKey: label)
         handlersContainer.add(handler: handler, forKey: label)
