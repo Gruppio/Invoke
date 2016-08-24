@@ -10,6 +10,8 @@ import Foundation
 
 class InvocationCounterSinceInstallation {
     var defaults: UserDefaults
+    let kInvocationsLabels = "invoke.kInvocationsLabels"
+    let kInvocationsCountPrefix = "invoke.kInvocationsLabelsCount."
     
     init(defaults: UserDefaults) {
         self.defaults = defaults
@@ -23,22 +25,25 @@ class InvocationCounterSinceInstallation {
 // MARK: InvocationCounter
 extension InvocationCounterSinceInstallation: InvocationCounter {
     var allInvocationsLabels: [String] {
-        return defaults.attributeKeys
+        if let invocationsLabels = defaults.stringArray(forKey: kInvocationsLabels) {
+            return invocationsLabels
+        }
+        else {
+            return []
+        }
     }
     
     func numberOfInvocations(of label: String) -> Int {
-        return defaults.integer(forKey: label)
+        return defaults.integer(forKey: kInvocationsCountPrefix+label)
     }
     
     func invoked(label: String) {
-        defaults.set(numberOfInvocations(of: label) + 1, forKey: label)
+        defaults.set(numberOfInvocations(of: label) + 1, forKey: kInvocationsCountPrefix+label)
         defaults.synchronize()
     }
     
     func reset() {
-        allInvocationsLabels.forEach() {
-            defaults.removeObject(forKey: $0)
-        }
+        defaults.removeObject(forKey: kInvocationsLabels)
         defaults.synchronize()
     }
 }
