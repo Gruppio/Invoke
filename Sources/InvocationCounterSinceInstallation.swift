@@ -1,14 +1,14 @@
 //
-//  InvocationCounterSinceEver.swift
+//  InvocationCounterSinceInstallation.swift
 //  Invoke
 //
-//  Created by Gruppioni Michele on 14/08/16.
+//  Created by Travasoni Giuseppe on 24/08/16.
 //
 //
 
 import Foundation
 
-/*class InvocationCounterSinceEver {
+class InvocationCounterSinceInstallation {
     var defaults: UserDefaults
     
     init(defaults: UserDefaults) {
@@ -21,7 +21,7 @@ import Foundation
 }
 
 // MARK: InvocationCounter
-extension InvocationCounterSinceEver: InvocationCounter {
+extension InvocationCounterSinceInstallation: InvocationCounter {
     var allInvocationsLabels: [String] {
         return defaults.attributeKeys
     }
@@ -42,4 +42,3 @@ extension InvocationCounterSinceEver: InvocationCounter {
         defaults.synchronize()
     }
 }
-*/

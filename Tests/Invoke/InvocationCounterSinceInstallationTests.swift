@@ -1,5 +1,5 @@
 //
-//  InvocationCounterSinceEverTests.swift
+//  InvocationCounterSinceInstallationTests.swift
 //  Invoke
 //
 //  Created by Gruppioni Michele on 14/08/16.
@@ -9,7 +9,7 @@
 import XCTest
 @testable import Invoke
 
-class InvocationCounterSinceEverTests: XCTestCase {
+class InvocationCounterSinceInstallationTests: XCTestCase {
     
     let label1 = "label1"
     let label2 = "label2"
@@ -17,7 +17,7 @@ class InvocationCounterSinceEverTests: XCTestCase {
     func createInvocationCounter(userDefaultsValues: [String : AnyObject]) -> InvocationCounter {
         let userDefaults = UserDefaultsStubbed()
         userDefaults.storedData = userDefaultsValues
-        return InvocationCounterSinceEver(defaults: userDefaults)
+        return InvocationCounterSinceInstallation(defaults: userDefaults)
     }
     
     func testAllInvocationsLabelsWithNoInvocations() {
