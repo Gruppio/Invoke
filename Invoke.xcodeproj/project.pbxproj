@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		714C44071D60A6B500683F7D /* InvokeOnceEveryLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C44061D60A6B500683F7D /* InvokeOnceEveryLaunchTests.swift */; };
+		714C44091D60C97900683F7D /* InvocationCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C44081D60C97900683F7D /* InvocationCounter.swift */; };
+		714C440B1D60CE3400683F7D /* InvocationCounterSinceLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C440A1D60CE3400683F7D /* InvocationCounterSinceLaunch.swift */; };
+		714C440D1D60CE6000683F7D /* InvocationCounterSinceLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C440C1D60CE6000683F7D /* InvocationCounterSinceLaunchTests.swift */; };
+		714C440F1D60D70A00683F7D /* InvocationCounterSinceEver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C440E1D60D70A00683F7D /* InvocationCounterSinceEver.swift */; };
+		714C44111D60DC6B00683F7D /* InvocationCounterSinceInstallationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714C44101D60DC6B00683F7D /* InvocationCounterSinceInstallationTests.swift */; };
+		71712AAB1D6DDAA60068B32C /* WeakHandlersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71712AAA1D6DDAA60068B32C /* WeakHandlersContainer.swift */; };
+		71712AAD1D6DDB990068B32C /* HandlersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71712AAC1D6DDB990068B32C /* HandlersContainer.swift */; };
+		718C38FE1D5FE86000E22573 /* Invoke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 718C38FD1D5FE86000E22573 /* Invoke.swift */; };
+		719012F21D62131400A19FB7 /* UserDefaultsStubbed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719012F11D62131400A19FB7 /* UserDefaultsStubbed.swift */; };
+		719012F41D62229100A19FB7 /* TimersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719012F31D62229100A19FB7 /* TimersContainer.swift */; };
+		71C4EA8B1D6CF089009D751D /* StrongHandlersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C4EA8A1D6CF089009D751D /* StrongHandlersContainer.swift */; };
+		71C4EA8D1D6CF42A009D751D /* InvokeEveryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C4EA8C1D6CF42A009D751D /* InvokeEveryTests.swift */; };
+		71DB3F041D6DB041000616CF /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71DB3F031D6DB041000616CF /* Weak.swift */; };
+		BC7BF1D91D6DED56004C2013 /* InvocationCounterSinceInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BF1D81D6DED56004C2013 /* InvocationCounterSinceInstallation.swift */; };
+		BC7BF1DB1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BF1DA1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift */; };
+		BC7BF1DD1D6E19E7004C2013 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BF1DC1D6E19E7004C2013 /* Keychain.swift */; };
+		_LinkFileRef_Invoke_via_InvokeTestSuite /* Invoke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Invoke" /* Invoke.framework */; };
+		__src_cc_ref_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		718C38FC1D5FE7BE00E22573 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = __RootObject_ /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "______Target_Invoke";
+			remoteInfo = Invoke;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		714C44061D60A6B500683F7D /* InvokeOnceEveryLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvokeOnceEveryLaunchTests.swift; sourceTree = "<group>"; };
+		714C44081D60C97900683F7D /* InvocationCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounter.swift; sourceTree = "<group>"; };
+		714C440A1D60CE3400683F7D /* InvocationCounterSinceLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceLaunch.swift; sourceTree = "<group>"; };
+		714C440C1D60CE6000683F7D /* InvocationCounterSinceLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceLaunchTests.swift; sourceTree = "<group>"; };
+		714C440E1D60D70A00683F7D /* InvocationCounterSinceEver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceEver.swift; sourceTree = "<group>"; };
+		714C44101D60DC6B00683F7D /* InvocationCounterSinceInstallationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceInstallationTests.swift; sourceTree = "<group>"; };
+		71712AAA1D6DDAA60068B32C /* WeakHandlersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakHandlersContainer.swift; sourceTree = "<group>"; };
+		71712AAC1D6DDB990068B32C /* HandlersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandlersContainer.swift; sourceTree = "<group>"; };
+		718C38FD1D5FE86000E22573 /* Invoke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Invoke.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		719012F11D62131400A19FB7 /* UserDefaultsStubbed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserDefaultsStubbed.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		719012F31D62229100A19FB7 /* TimersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimersContainer.swift; sourceTree = "<group>"; };
+		71C4EA8A1D6CF089009D751D /* StrongHandlersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrongHandlersContainer.swift; sourceTree = "<group>"; };
+		71C4EA8C1D6CF42A009D751D /* InvokeEveryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvokeEveryTests.swift; sourceTree = "<group>"; };
+		71DB3F031D6DB041000616CF /* Weak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
+		BC7BF1D81D6DED56004C2013 /* InvocationCounterSinceInstallation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceInstallation.swift; sourceTree = "<group>"; };
+		BC7BF1DA1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceEverTests.swift; sourceTree = "<group>"; };
+		BC7BF1DC1D6E19E7004C2013 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Invoke.xcodeproj/Configs/Project.xcconfig /* Invoke.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Invoke.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
+		__PBXFileRef_InvokeTestSuite_Info.plist /* Invoke.xcodeproj/InvokeTestSuite_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Invoke.xcodeproj/InvokeTestSuite_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_Invoke_Info.plist /* Invoke.xcodeproj/Invoke_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Invoke.xcodeproj/Invoke_Info.plist; sourceTree = SOURCE_ROOT; };
+		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		__PBXFileRef_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvokeTests.swift; sourceTree = "<group>"; };
+		"_____Product_Invoke" /* Invoke.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Invoke.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"_____Product_InvokeTestSuite" /* InvokeTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = InvokeTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		"___LinkPhase_Invoke" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		"___LinkPhase_InvokeTestSuite" /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 0;
+			files = (
+				_LinkFileRef_Invoke_via_InvokeTestSuite /* Invoke.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		TestProducts_ /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_____Product_InvokeTestSuite" /* InvokeTestSuite.xctest */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		"___RootGroup_" = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Package.swift /* Package.swift */,
+				"_____Configs_" /* Configs */,
+				"_____Sources_" /* Sources */,
+				"_______Tests_" /* Tests */,
+				"____Products_" /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		"____Products_" /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				TestProducts_ /* Tests */,
+				"_____Product_Invoke" /* Invoke.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		"_____Configs_" /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Invoke.xcodeproj/Configs/Project.xcconfig /* Invoke.xcodeproj/Configs/Project.xcconfig */,
+			);
+			name = Configs;
+			sourceTree = "<group>";
+		};
+		"_____Sources_" /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_Invoke" /* Invoke */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_Invoke" /* Invoke */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Invoke_Info.plist /* Invoke.xcodeproj/Invoke_Info.plist */,
+				718C38FD1D5FE86000E22573 /* Invoke.swift */,
+				714C44081D60C97900683F7D /* InvocationCounter.swift */,
+				714C440A1D60CE3400683F7D /* InvocationCounterSinceLaunch.swift */,
+				714C440E1D60D70A00683F7D /* InvocationCounterSinceEver.swift */,
+				BC7BF1D81D6DED56004C2013 /* InvocationCounterSinceInstallation.swift */,
+				719012F31D62229100A19FB7 /* TimersContainer.swift */,
+				71C4EA8A1D6CF089009D751D /* StrongHandlersContainer.swift */,
+				BC7BF1DC1D6E19E7004C2013 /* Keychain.swift */,
+				71DB3F031D6DB041000616CF /* Weak.swift */,
+				71712AAA1D6DDAA60068B32C /* WeakHandlersContainer.swift */,
+				71712AAC1D6DDB990068B32C /* HandlersContainer.swift */,
+			);
+			name = Invoke;
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		"_______Group_InvokeTestSuite" /* InvokeTestSuite */ = {
+			isa = PBXGroup;
+			children = (
+				__PBXFileRef_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift */,
+				__PBXFileRef_InvokeTestSuite_Info.plist /* Invoke.xcodeproj/InvokeTestSuite_Info.plist */,
+				714C44061D60A6B500683F7D /* InvokeOnceEveryLaunchTests.swift */,
+				714C440C1D60CE6000683F7D /* InvocationCounterSinceLaunchTests.swift */,
+				714C44101D60DC6B00683F7D /* InvocationCounterSinceInstallationTests.swift */,
+				BC7BF1DA1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift */,
+				719012F11D62131400A19FB7 /* UserDefaultsStubbed.swift */,
+				71C4EA8C1D6CF42A009D751D /* InvokeEveryTests.swift */,
+			);
+			name = InvokeTestSuite;
+			path = Tests/Invoke;
+			sourceTree = "<group>";
+		};
+		"_______Tests_" /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				"_______Group_InvokeTestSuite" /* InvokeTestSuite */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		"______Target_Invoke" /* Invoke */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_Invoke" /* Build configuration list for PBXNativeTarget "Invoke" */;
+			buildPhases = (
+				CompilePhase_Invoke /* Sources */,
+				"___LinkPhase_Invoke" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Invoke;
+			productName = Invoke;
+			productReference = "_____Product_Invoke" /* Invoke.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		"______Target_InvokeTestSuite" /* InvokeTestSuite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = "_______Confs_InvokeTestSuite" /* Build configuration list for PBXNativeTarget "InvokeTestSuite" */;
+			buildPhases = (
+				CompilePhase_InvokeTestSuite /* Sources */,
+				"___LinkPhase_InvokeTestSuite" /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				__Dependency_Invoke /* PBXTargetDependency */,
+			);
+			name = InvokeTestSuite;
+			productName = InvokeTestSuite;
+			productReference = "_____Product_InvokeTestSuite" /* InvokeTestSuite.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		__RootObject_ /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 9999;
+				TargetAttributes = {
+					"______Target_Invoke" = {
+						DevelopmentTeam = 975R26MN46;
+						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = "___RootConfs_" /* Build configuration list for PBXProject "Invoke" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = "___RootGroup_";
+			productRefGroup = "____Products_" /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				"______Target_Invoke" /* Invoke */,
+				"______Target_InvokeTestSuite" /* InvokeTestSuite */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CompilePhase_Invoke /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				714C44091D60C97900683F7D /* InvocationCounter.swift in Sources */,
+				BC7BF1D91D6DED56004C2013 /* InvocationCounterSinceInstallation.swift in Sources */,
+				719012F41D62229100A19FB7 /* TimersContainer.swift in Sources */,
+				71712AAB1D6DDAA60068B32C /* WeakHandlersContainer.swift in Sources */,
+				71C4EA8B1D6CF089009D751D /* StrongHandlersContainer.swift in Sources */,
+				BC7BF1DD1D6E19E7004C2013 /* Keychain.swift in Sources */,
+				714C440B1D60CE3400683F7D /* InvocationCounterSinceLaunch.swift in Sources */,
+				71712AAD1D6DDB990068B32C /* HandlersContainer.swift in Sources */,
+				714C440F1D60D70A00683F7D /* InvocationCounterSinceEver.swift in Sources */,
+				718C38FE1D5FE86000E22573 /* Invoke.swift in Sources */,
+				71DB3F041D6DB041000616CF /* Weak.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CompilePhase_InvokeTestSuite /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 0;
+			files = (
+				714C440D1D60CE6000683F7D /* InvocationCounterSinceLaunchTests.swift in Sources */,
+				714C44111D60DC6B00683F7D /* InvocationCounterSinceInstallationTests.swift in Sources */,
+				714C44071D60A6B500683F7D /* InvokeOnceEveryLaunchTests.swift in Sources */,
+				71C4EA8D1D6CF42A009D751D /* InvokeEveryTests.swift in Sources */,
+				__src_cc_ref_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift in Sources */,
+				BC7BF1DB1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift in Sources */,
+				719012F21D62131400A19FB7 /* UserDefaultsStubbed.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		__Dependency_Invoke /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = "______Target_Invoke" /* Invoke */;
+			targetProxy = 718C38FC1D5FE7BE00E22573 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		_ReleaseConf_Invoke /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 975R26MN46;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Invoke.xcodeproj/Invoke_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Invoke;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		_ReleaseConf_InvokeTestSuite /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Invoke.xcodeproj/InvokeTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		"___DebugConf_Invoke" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 975R26MN46;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Invoke.xcodeproj/Invoke_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = Invoke;
+				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"___DebugConf_InvokeTestSuite" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PLATFORM_DIR)/Developer/Library/Frameworks";
+				INFOPLIST_FILE = Invoke.xcodeproj/InvokeTestSuite_Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		"_____Release_" /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_Invoke.xcodeproj/Configs/Project.xcconfig /* Invoke.xcodeproj/Configs/Project.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		"_______Debug_" /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = __PBXFileRef_Invoke.xcodeproj/Configs/Project.xcconfig /* Invoke.xcodeproj/Configs/Project.xcconfig */;
+			buildSettings = {
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		"___RootConfs_" /* Build configuration list for PBXProject "Invoke" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"_______Debug_" /* Debug */,
+				"_____Release_" /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_Invoke" /* Build configuration list for PBXNativeTarget "Invoke" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_Invoke" /* Debug */,
+				_ReleaseConf_Invoke /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		"_______Confs_InvokeTestSuite" /* Build configuration list for PBXNativeTarget "InvokeTestSuite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				"___DebugConf_InvokeTestSuite" /* Debug */,
+				_ReleaseConf_InvokeTestSuite /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = __RootObject_ /* Project object */;
+}
