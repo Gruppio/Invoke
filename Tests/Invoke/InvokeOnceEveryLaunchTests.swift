@@ -13,7 +13,7 @@ class InvokeOnceEveryLaunchTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        Invoke.resetNonPersistantData()
+        Invoke.reset()
     }
     
     func testSingleInvocation() {
