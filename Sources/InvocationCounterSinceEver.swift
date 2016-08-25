@@ -9,36 +9,56 @@
 import Foundation
 
 class InvocationCounterSinceEver {
-    var defaults: UserDefaults
     
-    init(defaults: UserDefaults) {
-        self.defaults = defaults
+    fileprivate let kInvocationsLabels = "kInvocationsLabels"
+    fileprivate let kInvocationsCountPrefix = "kInvocationsLabelsCount."
+    
+    fileprivate var keychain: KeychainSwift
+    
+    init(keychainPrefix: String? = nil) {
+        keychain = KeychainSwift(keyPrefix: keychainPrefix ?? "invoke")
     }
     
-    convenience init() {
-        self.init(defaults: UserDefaults.standard)
-    }
 }
 
 // MARK: InvocationCounter
 extension InvocationCounterSinceEver: InvocationCounter {
+    
     var allInvocationsLabels: [String] {
-        return defaults.attributeKeys
+        get {
+            if let invocationsLabels = keychain.getStringArray(kInvocationsLabels) {
+                return invocationsLabels
+            }
+            else {
+                return []
+            }
+        }
+        set {
+            keychain.set(newValue, forKey: kInvocationsLabels)
+        }
     }
     
     func numberOfInvocations(of label: String) -> Int {
-        return defaults.integer(forKey: label)
+        if let numberOfInvocationString = keychain.getString(kInvocationsCountPrefix+label),
+            let numberOfInvocations = Int(numberOfInvocationString) {
+            return numberOfInvocations
+        }
+        else {
+            return 0
+        }
     }
     
     func invoked(label: String) {
-        defaults.set(numberOfInvocations(of: label) + 1, forKey: label)
-        defaults.synchronize()
+        if !allInvocationsLabels.contains(label) {
+            allInvocationsLabels.append(label)
+        }
+        keychain.set(String(numberOfInvocations(of: label) + 1), forKey: kInvocationsCountPrefix+label)
     }
     
     func reset() {
-        allInvocationsLabels.forEach() {
-            defaults.removeObject(forKey: $0)
-        }
-        defaults.synchronize()
+        allInvocationsLabels.forEach({ keychain.delete(kInvocationsCountPrefix+$0) })
+        keychain.delete(kInvocationsLabels)
+        keychain.clear()
     }
+    
 }
