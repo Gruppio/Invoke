@@ -22,7 +22,7 @@ extension Invoke {
         return whenInvocationsSinceLauch(label: label, are: { $0 == 0 }, handler: handler)
     }
     
-    open class func whenInvocationsSinceLauch(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+    open class func whenInvocationsSinceLauch(label: String, asyncOn queue: DispatchQueue? = nil, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
         return handleInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, are: shouldInvoke, handler: handler)
     }
     
@@ -34,14 +34,20 @@ extension Invoke {
         return handleInvocation(invocationsCounter: invocationsCounterSinceInstallation, label: label, are: shouldInvoke, handler: handler)
     }
     
-    private class func handleInvocation(invocationsCounter: InvocationCounter, label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+    private class func handleInvocation(invocationsCounter: InvocationCounter, label: String, asyncOn queue: DispatchQueue? = nil, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
         return {
             let numberOfInvocations = invocationsCounter.numberOfInvocations(of: label)
             defer {
                 invocationsCounter.invoked(label: label)
             }
             if shouldInvoke(numberOfInvocations) {
-                handler()
+                if let queue = queue {
+                    queue.async {
+                        handler()
+                    }
+                } else {
+                    handler()
+                }
             }
         }
     }
