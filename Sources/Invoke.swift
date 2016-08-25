@@ -23,7 +23,7 @@ extension Invoke {
     }
     
     open class func whenInvocationsSinceLauch(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
-        return handleInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, are: shouldInvoke, handler: handler)
+        return handleCountInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, are: shouldInvoke, handler: handler)
     }
     
     open class func onceForever(label: String, handler: @escaping () -> Void) -> () -> Void {
@@ -31,10 +31,10 @@ extension Invoke {
     }
     
     open class func whenInvocationsSinceEver(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
-        return handleInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, are: shouldInvoke, handler: handler)
+        return handleCountInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, are: shouldInvoke, handler: handler)
     }
     
-    private class func handleInvocation(invocationsCounter: InvocationCounter, label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+    fileprivate class func handleCountInvocation(invocationsCounter: InvocationCounter, label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
         return {
             let numberOfInvocations = invocationsCounter.numberOfInvocations(of: label)
             defer {
@@ -44,6 +44,36 @@ extension Invoke {
                 handler()
             }
         }
+    }
+}
+
+
+// MARK: Start Until Stop
+extension Invoke {
+    open class func untilStopSinceLaunch(label: String, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
+        return handleUntilStopInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, handler: handler)
+    }
+    
+    open class func untilStopSinceEver(label: String, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
+        return handleUntilStopInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, handler: handler)
+    }
+
+    private class func handleUntilStopInvocation(invocationsCounter: InvocationCounter, label: String, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
+        
+        let stopLabel = label + "_stop"
+        
+        let start: () -> Void = {
+            if invocationsCounter.numberOfInvocations(of: stopLabel) == 0 {
+                invocationsCounter.invoked(label: label)
+                handler()
+            }
+        }
+        
+        let stop: () -> Void = {
+            invocationsCounter.invoked(label: stopLabel)
+        }
+        
+        return (start: start, stop: stop)
     }
 }
 
@@ -80,14 +110,24 @@ extension Invoke {
 }
 
 
-
-
-
 // MARK: Reset Data
 extension Invoke {
     open class func reset() {
-        invocationsCounterSinceLaunch.reset()
-        invocationsCounterSinceEver.reset()
+        invocationsCounterSinceLaunch.allInvocationsLabels.forEach() {
+            invocationsCounterSinceLaunch.reset(label: $0)
+        }
+        
+        invocationsCounterSinceEver.allInvocationsLabels.forEach() {
+            invocationsCounterSinceEver.reset(label: $0)
+        }
+    }
+    
+    open class func resetInvocationsSinceLaunch(label: String) {
+        invocationsCounterSinceLaunch.reset(label: label)
+    }
+    
+    open class func resetInvocationsSinceEver(label: String) {
+        invocationsCounterSinceEver.reset(label: label)
     }
 }
 

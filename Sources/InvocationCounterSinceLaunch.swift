@@ -39,7 +39,7 @@ extension InvocationCounterSinceLaunch: InvocationCounter {
         invocations[label] = numberOfInvocations(of: label) + 1
     }
     
-    func reset() {
-        invocations.removeAll()
+    func reset(label: String) {
+        invocations.removeValue(forKey: label)
     }
 }

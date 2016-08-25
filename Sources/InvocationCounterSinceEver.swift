@@ -35,10 +35,8 @@ extension InvocationCounterSinceEver: InvocationCounter {
         defaults.synchronize()
     }
     
-    func reset() {
-        allInvocationsLabels.forEach() {
-            defaults.removeObject(forKey: $0)
-        }
+    func reset(label: String) {
+        defaults.removeObject(forKey: label)
         defaults.synchronize()
     }
 }
