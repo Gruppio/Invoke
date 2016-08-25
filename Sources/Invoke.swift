@@ -10,7 +10,7 @@ import Foundation
 
 open class Invoke {
     static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
-    static var invocationsCounterSinceEver: InvocationCounter = InvocationCounterSinceEver()
+    static var invocationsCounterSinceInstallation: InvocationCounter = InvocationCounterSinceInstallation()
     static var handlersContainer: HandlersContainer = StrongHandlersContainer()
     static var timersContainer = TimersContainer()
 }
@@ -31,7 +31,7 @@ extension Invoke {
     }
     
     open class func whenInvocationsSinceEver(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
-        return handleInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, are: shouldInvoke, handler: handler)
+        return handleInvocation(invocationsCounter: invocationsCounterSinceInstallation, label: label, are: shouldInvoke, handler: handler)
     }
     
     private class func handleInvocation(invocationsCounter: InvocationCounter, label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
@@ -87,7 +87,7 @@ extension Invoke {
 extension Invoke {
     open class func reset() {
         invocationsCounterSinceLaunch.reset()
-        invocationsCounterSinceEver.reset()
+        invocationsCounterSinceInstallation.reset()
     }
 }
 
