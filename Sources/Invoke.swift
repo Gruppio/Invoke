@@ -19,28 +19,28 @@ open class Invoke {
 
 // MARK: Number of Invocation Based
 extension Invoke {
-    open class func onceEveryLaunch(label: String, handler: @escaping () -> Void) -> () -> Void {
-        return whenInvocationsSinceLauch(label: label, are: { $0 == 0 }, handler: handler)
+    open class func onceEveryLaunch(label: String, asyncOn queue: DispatchQueue? = nil, handler: @escaping () -> Void) -> () -> Void {
+        return whenInvocationsSinceLauch(label: label, asyncOn: queue, are: { $0 == 0 }, handler: handler)
     }
     
     open class func whenInvocationsSinceLauch(label: String, asyncOn queue: DispatchQueue? = nil, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
-        return handleInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, are: shouldInvoke, handler: handler)
+        return handleInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, asyncOn: queue, are: shouldInvoke, handler: handler)
     }
     
-    open class func onceForever(label: String, handler: @escaping () -> Void) -> () -> Void {
-        return whenInvocationsSinceEver(label: label, are: { $0 == 0 }, handler: handler)
+    open class func onceForever(label: String, asyncOn queue: DispatchQueue? = nil, handler: @escaping () -> Void) -> () -> Void {
+        return whenInvocationsSinceEver(label: label, asyncOn: queue, are: { $0 == 0 }, handler: handler)
     }
     
-    open class func whenInvocationsSinceEver(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
-        return handleInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, are: shouldInvoke, handler: handler)
+    open class func whenInvocationsSinceEver(label: String, asyncOn queue: DispatchQueue? = nil, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+        return handleInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, asyncOn: queue, are: shouldInvoke, handler: handler)
     }
     
-    open class func onceForInstallation(label: String, handler: @escaping () -> Void) -> () -> Void {
-        return whenInvocationsSinceInstallation(label: label, are: { $0 == 0 }, handler: handler)
+    open class func onceForInstallation(label: String, asyncOn queue: DispatchQueue? = nil, handler: @escaping () -> Void) -> () -> Void {
+        return whenInvocationsSinceInstallation(label: label, asyncOn: queue, are: { $0 == 0 }, handler: handler)
     }
     
-    open class func whenInvocationsSinceInstallation(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
-        return handleInvocation(invocationsCounter: invocationsCounterSinceInstallation, label: label, are: shouldInvoke, handler: handler)
+    open class func whenInvocationsSinceInstallation(label: String, asyncOn queue: DispatchQueue? = nil,are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+        return handleInvocation(invocationsCounter: invocationsCounterSinceInstallation, label: label, asyncOn: queue, are: shouldInvoke, handler: handler)
     }
     
     private class func handleInvocation(invocationsCounter: InvocationCounter, label: String, asyncOn queue: DispatchQueue? = nil, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {

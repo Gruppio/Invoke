@@ -11,19 +11,38 @@ import XCTest
 
 class InvokeOnceEveryLaunchTests: XCTestCase {
     
+    let queueName = "custom.queue"
+    
     override func setUp() {
         super.setUp()
         Invoke.reset()
     }
     
     func testSingleInvocation() {
-        var numberOfInvocations = 0
         
+        var numberOfInvocations = 0
         Invoke.onceEveryLaunch(label: "invocation1", handler: {
             numberOfInvocations += 1
         })()
         
         XCTAssertEqual(numberOfInvocations, 1)
+    }
+    
+    func testSingleAsyncInvocation() {
+        
+        let asyncExpectation = expectation(description: "longRunningFunction")
+        
+        var numberOfInvocations = 0
+        
+        Invoke.onceEveryLaunch(label: "asyncInvocation1", asyncOn: DispatchQueue(label: queueName), handler: {
+            numberOfInvocations += 1
+            XCTAssertEqual(DispatchQueue.currentLabel, self.queueName)
+            asyncExpectation.fulfill()
+        })()
+        
+        waitForExpectations(timeout: 5) { error in
+            XCTAssertEqual(numberOfInvocations, 1)
+        }
     }
     
     
@@ -57,5 +76,11 @@ class InvokeOnceEveryLaunchTests: XCTestCase {
         invocation2()
         invocation2()
         XCTAssertEqual(numberOfInvocations, 1)
+    }
+}
+
+extension DispatchQueue {
+    class var currentLabel: String {
+        return String(validatingUTF8: __dispatch_queue_get_label(nil))!
     }
 }
