@@ -11,6 +11,7 @@ import Foundation
 open class Invoke {
     static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
     static var invocationsCounterSinceInstallation: InvocationCounter = InvocationCounterSinceInstallation()
+    static var invocationsCounterSinceEver: InvocationCounter = InvocationCounterSinceEver()
     static var handlersContainer: HandlersContainer = StrongHandlersContainer()
     static var timersContainer = TimersContainer()
 }
@@ -31,6 +32,14 @@ extension Invoke {
     }
     
     open class func whenInvocationsSinceEver(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+        return handleInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, are: shouldInvoke, handler: handler)
+    }
+    
+    open class func onceForInstallation(label: String, handler: @escaping () -> Void) -> () -> Void {
+        return whenInvocationsSinceInstallation(label: label, are: { $0 == 0 }, handler: handler)
+    }
+    
+    open class func whenInvocationsSinceInstallation(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
         return handleInvocation(invocationsCounter: invocationsCounterSinceInstallation, label: label, are: shouldInvoke, handler: handler)
     }
     
