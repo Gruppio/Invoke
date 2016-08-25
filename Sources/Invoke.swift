@@ -8,6 +8,8 @@
 
 import Foundation
 
+typealias invokeHadler = @escaping () -> Void
+
 open class Invoke {
     static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
     static var invocationsCounterSinceInstallation: InvocationCounter = InvocationCounterSinceInstallation()
@@ -50,13 +52,7 @@ extension Invoke {
                 invocationsCounter.invoked(label: label)
             }
             if shouldInvoke(numberOfInvocations) {
-                if let queue = queue {
-                    queue.async {
-                        handler()
-                    }
-                } else {
-                    handler()
-                }
+                performHandler(handler: handler, onQueue: queue)
             }
         }
     }
@@ -67,7 +63,7 @@ extension Invoke {
 extension Invoke {
     
     private struct timerUserInfo {
-        var label: String?
+        var label: String
         var queue: DispatchQueue?
     }
     
@@ -95,21 +91,25 @@ extension Invoke {
     
     @objc private class func timerTimedOut(timer: Timer) {
         if let userInfo = timer.userInfo as? timerUserInfo,
-            let label = userInfo.label,
-            let handler = handlersContainer.getHandler(forKey: label) {
-            if let queue = userInfo.queue {
-                queue.async {
-                    handler()
-                }
-            }
-            else {
-                handler()
-            }
+            let handler = handlersContainer.getHandler(forKey: userInfo.label) {
+            performHandler(handler: handler, onQueue: userInfo.queue)
         }
     }
 }
 
-
+//MARK: Handler executer 
+extension Invoke {
+    fileprivate class func performHandler(handler: @escaping () -> Void, onQueue queue: DispatchQueue?) {
+        if let queue = queue {
+            queue.async {
+                handler()
+            }
+        }
+        else {
+            handler()
+        }
+    }
+}
 
 
 
