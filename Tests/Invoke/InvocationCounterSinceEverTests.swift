@@ -14,29 +14,26 @@ class InvocationCounterSinceEverTests: XCTestCase {
     let label1 = "label1"
     let label2 = "label2"
     
-    func createInvocationCounter(userDefaultsValues: [String : AnyObject]) -> InvocationCounter {
+    func createInvocationCounter() -> InvocationCounter {
         let invocationCounter = InvocationCounterSinceEver(keychainPrefix: "tests")
-        invocationCounter.reset()
+        invocationCounter.resetAll()
         return invocationCounter
     }
     
     func testAllInvocationsLabelsWithNoInvocations() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
+        let invocationCounter = createInvocationCounter()
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
     }
     
     func testAllInvocationsLabelsAfterOneInvocation() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 1)
         XCTAssert(invocationCounter.allInvocationsLabels.contains(label1))
     }
     
     func testAllInvocationsLabelsAfterMultipleInvocations() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label2)
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 2)
@@ -45,29 +42,25 @@ class InvocationCounterSinceEverTests: XCTestCase {
     }
     
     func testNumberOfInvocationsWithNoInvocations() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
+        let invocationCounter = createInvocationCounter()
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 0)
     }
     
     func testNumberOfInvocationsAfterOneInvocation() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 1)
     }
     
     func testNumberOfInvocationsAfterMultipleInvocation() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label1)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 2)
     }
     
     func testNumberOfInvocationsAfterDifferentsInvocation() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label2)
         invocationCounter.invoked(label: label1)
@@ -77,30 +70,27 @@ class InvocationCounterSinceEverTests: XCTestCase {
     }
     
     func testResetWithNoInvocations() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
-        invocationCounter.reset()
+        let invocationCounter = createInvocationCounter()
+        invocationCounter.resetAll()
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 0)
     }
     
     func testResetAfterOneInvocation() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
-        invocationCounter.reset()
+        invocationCounter.resetAll()
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 0)
     }
     
     func testResetAfterMultipleDifferentInvocations() {
-        let userDefaultsValues: [String : AnyObject] = [:]
-        let invocationCounter = createInvocationCounter(userDefaultsValues: userDefaultsValues)
+        let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label2)
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label2)
-        invocationCounter.reset()
+        invocationCounter.resetAll()
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label2), 0)

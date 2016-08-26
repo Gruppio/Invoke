@@ -27,12 +27,7 @@ extension InvocationCounterSinceInstallation: InvocationCounter {
     
     var allInvocationsLabels: [String] {
         get {
-            if let invocationsLabels = defaults.stringArray(forKey: kInvocationsLabels) {
-                return invocationsLabels
-            }
-            else {
-                return []
-            }
+            return defaults.stringArray(forKey: kInvocationsLabels) ?? []
         }
         set {
             defaults.set(newValue, forKey: kInvocationsLabels)
@@ -44,16 +39,23 @@ extension InvocationCounterSinceInstallation: InvocationCounter {
     }
     
     func invoked(label: String) {
+        let invocationCountLabel = createInvocationCountLabel(with: label)
+        defaults.set(numberOfInvocations(of: label) + 1, forKey: invocationCountLabel)
+        
         if !allInvocationsLabels.contains(label) {
             allInvocationsLabels.append(label)
         }
-        defaults.set(numberOfInvocations(of: label) + 1, forKey: kInvocationsCountPrefix+label)
-        defaults.synchronize()
     }
     
-    func reset() {
-        allInvocationsLabels.forEach({ defaults.removeObject(forKey: kInvocationsCountPrefix+$0) })
-        defaults.removeObject(forKey: kInvocationsLabels)
-        defaults.synchronize()
+    func reset(label: String) {
+        if allInvocationsLabels.contains(label) {
+            let invocationCountLabel = createInvocationCountLabel(with: label)
+            allInvocationsLabels = allInvocationsLabels.filter({$0 != label})
+            defaults.removeObject(forKey: invocationCountLabel)
+        }
+    }
+    
+    private func createInvocationCountLabel(with label: String) -> String {
+        return kInvocationsCountPrefix + label
     }
 }

@@ -8,8 +8,7 @@
 
 import Foundation
 
-class InvocationCounterSinceEver {
-    
+final class InvocationCounterSinceEver {
     fileprivate let kInvocationsLabels = "kInvocationsLabels"
     fileprivate let kInvocationsCountPrefix = "kInvocationsLabelsCount."
     
@@ -18,7 +17,6 @@ class InvocationCounterSinceEver {
     init(keychainPrefix: String? = nil) {
         keychain = KeychainSwift(keyPrefix: keychainPrefix ?? "invoke")
     }
-    
 }
 
 // MARK: InvocationCounter
@@ -26,12 +24,7 @@ extension InvocationCounterSinceEver: InvocationCounter {
     
     var allInvocationsLabels: [String] {
         get {
-            if let invocationsLabels = keychain.getStringArray(kInvocationsLabels) {
-                return invocationsLabels
-            }
-            else {
-                return []
-            }
+            return keychain.getStringArray(kInvocationsLabels) ?? []
         }
         set {
             keychain.set(newValue, forKey: kInvocationsLabels)
@@ -39,26 +32,29 @@ extension InvocationCounterSinceEver: InvocationCounter {
     }
     
     func numberOfInvocations(of label: String) -> Int {
-        if let numberOfInvocationString = keychain.getString(kInvocationsCountPrefix+label),
-            let numberOfInvocations = Int(numberOfInvocationString) {
-            return numberOfInvocations
-        }
-        else {
-            return 0
-        }
+        let invocationCountLabel = createInvocationCountLabel(with: label)
+        return Int(keychain.getString(invocationCountLabel) ?? "0") ?? 0
     }
     
     func invoked(label: String) {
         if !allInvocationsLabels.contains(label) {
             allInvocationsLabels.append(label)
         }
-        keychain.set(String(numberOfInvocations(of: label) + 1), forKey: kInvocationsCountPrefix+label)
+        
+        let invocationCountLabel = createInvocationCountLabel(with: label)
+        keychain.set(String(numberOfInvocations(of: label) + 1), forKey: invocationCountLabel)
     }
     
-    func reset() {
-        allInvocationsLabels.forEach({ keychain.delete(kInvocationsCountPrefix+$0) })
-        keychain.delete(kInvocationsLabels)
-        keychain.clear()
+    func reset(label: String) {
+        if allInvocationsLabels.contains(label) {
+            allInvocationsLabels = allInvocationsLabels.filter({$0 != label})
+            let invocationCountLabel = createInvocationCountLabel(with: label)
+            keychain.delete(invocationCountLabel)
+        }
     }
-    
+        
+    private func createInvocationCountLabel(with label: String) -> String {
+        return kInvocationsCountPrefix + label
+    }
+
 }
