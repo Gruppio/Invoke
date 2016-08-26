@@ -69,7 +69,7 @@ class InvocationCounterSinceLaunchTests: XCTestCase {
     
     func testResetWithNoInvocations() {
         let invocationCounter = createInvocationCounter()
-        invocationCounter.reset()
+        invocationCounter.resetAll()
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 0)
     }
@@ -77,7 +77,7 @@ class InvocationCounterSinceLaunchTests: XCTestCase {
     func testResetAfterOneInvocation() {
         let invocationCounter = createInvocationCounter()
         invocationCounter.invoked(label: label1)
-        invocationCounter.reset()
+        invocationCounter.resetAll()
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 0)
     }
@@ -88,7 +88,7 @@ class InvocationCounterSinceLaunchTests: XCTestCase {
         invocationCounter.invoked(label: label2)
         invocationCounter.invoked(label: label1)
         invocationCounter.invoked(label: label2)
-        invocationCounter.reset()
+        invocationCounter.resetAll()
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label2), 0)

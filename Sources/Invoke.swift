@@ -57,6 +57,36 @@ extension Invoke {
 }
 
 
+// MARK: Start Until Stop
+extension Invoke {
+    open class func untilStopSinceLaunch(label: String, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
+        return handleUntilStopInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, handler: handler)
+    }
+    
+    open class func untilStopSinceEver(label: String, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
+        return handleUntilStopInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, handler: handler)
+    }
+
+    private class func handleUntilStopInvocation(invocationsCounter: InvocationCounter, label: String, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
+        
+        let stopLabel = label + "_stop"
+        
+        let start: () -> Void = {
+            if invocationsCounter.numberOfInvocations(of: stopLabel) == 0 {
+                invocationsCounter.invoked(label: label)
+                handler()
+            }
+        }
+        
+        let stop: () -> Void = {
+            invocationsCounter.invoked(label: stopLabel)
+        }
+        
+        return (start: start, stop: stop)
+    }
+}
+
+
 // MARK: Timer Based
 extension Invoke {
     open class func every(label: String, _ timeInterval: TimeInterval, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void, release: () -> Void) {
@@ -89,14 +119,24 @@ extension Invoke {
 }
 
 
-
-
-
 // MARK: Reset Data
 extension Invoke {
     open class func reset() {
-        invocationsCounterSinceLaunch.reset()
-        invocationsCounterSinceInstallation.reset()
+        invocationsCounterSinceLaunch.resetAll()
+        invocationsCounterSinceInstallation.resetAll()
+        invocationsCounterSinceEver.resetAll()
+    }
+    
+    open class func resetInvocationsSinceLaunch(label: String) {
+        invocationsCounterSinceLaunch.reset(label: label)
+    }
+    
+    open class func resetInvocationsSinceInstllation(label: String) {
+        invocationsCounterSinceInstallation.reset(label: label)
+    }
+    
+    open class func resetInvocationsSinceEver(label: String) {
+        invocationsCounterSinceEver.reset(label: label)
     }
 }
 
