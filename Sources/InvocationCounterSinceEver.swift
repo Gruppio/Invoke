@@ -8,35 +8,53 @@
 
 import Foundation
 
-class InvocationCounterSinceEver {
-    var defaults: UserDefaults
+final class InvocationCounterSinceEver {
+    fileprivate let kInvocationsLabels = "kInvocationsLabels"
+    fileprivate let kInvocationsCountPrefix = "kInvocationsLabelsCount."
     
-    init(defaults: UserDefaults) {
-        self.defaults = defaults
-    }
+    fileprivate var keychain: KeychainSwift
     
-    convenience init() {
-        self.init(defaults: UserDefaults.standard)
+    init(keychainPrefix: String? = nil) {
+        keychain = KeychainSwift(keyPrefix: keychainPrefix ?? "invoke")
     }
 }
 
 // MARK: InvocationCounter
 extension InvocationCounterSinceEver: InvocationCounter {
+    
     var allInvocationsLabels: [String] {
-        return defaults.attributeKeys
+        get {
+            return keychain.getStringArray(kInvocationsLabels) ?? []
+        }
+        set {
+            keychain.set(newValue, forKey: kInvocationsLabels)
+        }
     }
     
     func numberOfInvocations(of label: String) -> Int {
-        return defaults.integer(forKey: label)
+        let invocationCountLabel = createInvocationCountLabel(with: label)
+        return Int(keychain.getString(invocationCountLabel) ?? "0") ?? 0
     }
     
     func invoked(label: String) {
-        defaults.set(numberOfInvocations(of: label) + 1, forKey: label)
-        defaults.synchronize()
+        if !allInvocationsLabels.contains(label) {
+            allInvocationsLabels.append(label)
+        }
+        
+        let invocationCountLabel = createInvocationCountLabel(with: label)
+        keychain.set(String(numberOfInvocations(of: label) + 1), forKey: invocationCountLabel)
     }
     
     func reset(label: String) {
-        defaults.removeObject(forKey: label)
-        defaults.synchronize()
+        if allInvocationsLabels.contains(label) {
+            allInvocationsLabels = allInvocationsLabels.filter({$0 != label})
+            let invocationCountLabel = createInvocationCountLabel(with: label)
+            keychain.delete(invocationCountLabel)
+        }
     }
+        
+    private func createInvocationCountLabel(with label: String) -> String {
+        return kInvocationsCountPrefix + label
+    }
+
 }

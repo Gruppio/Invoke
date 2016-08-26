@@ -10,6 +10,7 @@ import Foundation
 
 open class Invoke {
     static var invocationsCounterSinceLaunch: InvocationCounter = InvocationCounterSinceLaunch()
+    static var invocationsCounterSinceInstallation: InvocationCounter = InvocationCounterSinceInstallation()
     static var invocationsCounterSinceEver: InvocationCounter = InvocationCounterSinceEver()
     static var handlersContainer: HandlersContainer = StrongHandlersContainer()
     static var timersContainer = TimersContainer()
@@ -23,7 +24,7 @@ extension Invoke {
     }
     
     open class func whenInvocationsSinceLauch(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
-        return handleCountInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, are: shouldInvoke, handler: handler)
+        return handleInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, are: shouldInvoke, handler: handler)
     }
     
     open class func onceForever(label: String, handler: @escaping () -> Void) -> () -> Void {
@@ -31,10 +32,18 @@ extension Invoke {
     }
     
     open class func whenInvocationsSinceEver(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
-        return handleCountInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, are: shouldInvoke, handler: handler)
+        return handleInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, are: shouldInvoke, handler: handler)
     }
     
-    fileprivate class func handleCountInvocation(invocationsCounter: InvocationCounter, label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+    open class func onceForInstallation(label: String, handler: @escaping () -> Void) -> () -> Void {
+        return whenInvocationsSinceInstallation(label: label, are: { $0 == 0 }, handler: handler)
+    }
+    
+    open class func whenInvocationsSinceInstallation(label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
+        return handleInvocation(invocationsCounter: invocationsCounterSinceInstallation, label: label, are: shouldInvoke, handler: handler)
+    }
+    
+    private class func handleInvocation(invocationsCounter: InvocationCounter, label: String, are shouldInvoke: @escaping (Int) -> Bool, handler: @escaping () -> Void) -> () -> Void {
         return {
             let numberOfInvocations = invocationsCounter.numberOfInvocations(of: label)
             defer {
@@ -113,17 +122,17 @@ extension Invoke {
 // MARK: Reset Data
 extension Invoke {
     open class func reset() {
-        invocationsCounterSinceLaunch.allInvocationsLabels.forEach() {
-            invocationsCounterSinceLaunch.reset(label: $0)
-        }
-        
-        invocationsCounterSinceEver.allInvocationsLabels.forEach() {
-            invocationsCounterSinceEver.reset(label: $0)
-        }
+        invocationsCounterSinceLaunch.resetAll()
+        invocationsCounterSinceInstallation.resetAll()
+        invocationsCounterSinceEver.resetAll()
     }
     
     open class func resetInvocationsSinceLaunch(label: String) {
         invocationsCounterSinceLaunch.reset(label: label)
+    }
+    
+    open class func resetInvocationsSinceInstllation(label: String) {
+        invocationsCounterSinceInstallation.reset(label: label)
     }
     
     open class func resetInvocationsSinceEver(label: String) {

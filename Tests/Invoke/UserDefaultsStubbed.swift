@@ -11,11 +11,7 @@ import Foundation
 open class UserDefaultsStubbed : UserDefaults {
     
     var storedData = [String : Any]()
-    
-    open override var attributeKeys: [String] {
-        return Array(storedData.keys)
-    }
-    
+        
     open override func object(forKey defaultName: String) -> Any? {
         return storedData[defaultName]
     }
