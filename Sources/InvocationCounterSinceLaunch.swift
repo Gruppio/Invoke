@@ -9,7 +9,7 @@
 import Foundation
 
 class InvocationCounterSinceLaunch {
-    private let syncronizationQueue = DispatchQueue(label: "com.gruppio.invoke.invocation_counter_since_launch")
+    private let syncronizationQueue = DispatchQueue(label: "invoke.invocation_counter_since_launch")
     private var _invocations = [String : Int]()
     var invocations: [String : Int] {
         get {

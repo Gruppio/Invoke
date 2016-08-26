@@ -35,7 +35,7 @@ extension Invoke {
         return handleInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, are: shouldInvoke, handler: handler)
     }
     
-    open class func onceForInstallation(label: String, handler: @escaping () -> Void) -> () -> Void {
+    open class func onceEveryInstallation(label: String, handler: @escaping () -> Void) -> () -> Void {
         return whenInvocationsSinceInstallation(label: label, are: { $0 == 0 }, handler: handler)
     }
     
@@ -121,7 +121,7 @@ extension Invoke {
 
 // MARK: Reset Data
 extension Invoke {
-    open class func reset() {
+    open class func resetAll() {
         invocationsCounterSinceLaunch.resetAll()
         invocationsCounterSinceInstallation.resetAll()
         invocationsCounterSinceEver.resetAll()
