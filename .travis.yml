@@ -1,9 +1,11 @@
 language: objective-c
 osx_image: xcode8
 
-#before_install: 
-#- time ./travis/travis_before_install.sh
+before_install: 
+- rvm use $RVM_RUBY_VERSION
+- gem install slather --no-rdoc --no-ri --no-document --quiet
+
 script:
 - time ./travis/travis_build_script.sh
-#after_script:
-#- ./travis/travis_after_script.sh
+
+after_success: slather
