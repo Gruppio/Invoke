@@ -83,8 +83,12 @@ public class KeychainSwift {
     public func set(_ value: [String], forKey key: String,
                     withAccess access: KeychainSwiftAccessOptions? = nil) -> Bool {
         
-        if let value = value.joined(separator: "|").data(using: String.Encoding.utf8) {
+        if let value = value.joined(separator: "|").data(using: String.Encoding.utf8),
+            value.count > 0 {
             return set(value, forKey: key, withAccess: access)
+        }
+        else if value.count == 0 {
+            return delete(key)
         }
         
         return false
