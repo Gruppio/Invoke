@@ -7,4 +7,4 @@
 #xcodebuild test -project Invoke.xcodeproj -scheme Invoke -sdk appletvsimulator10.0 -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=10.0' | xcpretty
 
 echo "Launching build and test on macOS"
-xcodebuild test -project Invoke.xcodeproj -scheme Invoke -sdk macosx -destination 'platform=OS X,arch=x86_64' | xcpretty
+xcodebuild test -project Invoke.xcodeproj -scheme Invoke -sdk macosx -destination 'platform=OS X,arch=x86_64' GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
