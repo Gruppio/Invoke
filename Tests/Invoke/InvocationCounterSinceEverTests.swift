@@ -1,21 +1,23 @@
 //
-//  InvocationCounterSinceLaunchTests.swift
+//  InvocationCounterSinceInstallationTests.swift
 //  Invoke
 //
-//  Created by Gruppioni Michele on 14/08/16.
+//  Created by Giuseppe Travasoni on 14/08/16.
 //
 //
 
 import XCTest
 @testable import Invoke
 
-class InvocationCounterSinceLaunchTests: XCTestCase {
+class InvocationCounterSinceEverTests: XCTestCase {
     
     let label1 = "label1"
     let label2 = "label2"
     
     func createInvocationCounter() -> InvocationCounter {
-        return InvocationCounterSinceLaunch()
+        let invocationCounter = InvocationCounterSinceEver(keychainPrefix: "tests")
+        invocationCounter.resetAll()
+        return invocationCounter
     }
     
     func testAllInvocationsLabelsWithNoInvocations() {
