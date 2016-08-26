@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct InvocationCounterSinceLaunch {
+class InvocationCounterSinceLaunch {
     private let syncronizationQueue = DispatchQueue(label: "com.gruppio.invoke.invocation_counter_since_launch")
     private var _invocations = [String : Int]()
     var invocations: [String : Int] {
@@ -25,6 +25,7 @@ struct InvocationCounterSinceLaunch {
     }
 }
 
+// MARK: InvocationCounter
 extension InvocationCounterSinceLaunch: InvocationCounter {
     var allInvocationsLabels: [String] {
         return Array(invocations.keys)
@@ -34,11 +35,11 @@ extension InvocationCounterSinceLaunch: InvocationCounter {
         return invocations[label] ?? 0
     }
     
-    mutating func invoked(label: String) {
+    func invoked(label: String) {
         invocations[label] = numberOfInvocations(of: label) + 1
     }
     
-    mutating func reset() {
-        invocations.removeAll()
+    func reset(label: String) {
+        invocations.removeValue(forKey: label)
     }
 }
