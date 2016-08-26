@@ -1,0 +1,8 @@
+# .slather.yml
+
+coverage_service: coveralls
+xcodeproj: Invoke.xcodeproj
+scheme: Invoke
+ignore:
+  - Tests/*
+  - travis/*
