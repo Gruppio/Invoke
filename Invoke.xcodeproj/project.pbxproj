@@ -25,6 +25,11 @@
 		BC7BF1D91D6DED56004C2013 /* InvocationCounterSinceInstallation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BF1D81D6DED56004C2013 /* InvocationCounterSinceInstallation.swift */; };
 		BC7BF1DB1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BF1DA1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift */; };
 		BC7BF1DD1D6E19E7004C2013 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7BF1DC1D6E19E7004C2013 /* Keychain.swift */; };
+		BC8C9B311D7429BD005AA4D5 /* KeychainSwiftPrefixedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C9B2F1D7429BD005AA4D5 /* KeychainSwiftPrefixedTests.swift */; };
+		BC8C9B321D7429BD005AA4D5 /* KeychainSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C9B301D7429BD005AA4D5 /* KeychainSwiftTests.swift */; };
+		BC8C9B361D742A38005AA4D5 /* AccessGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C9B331D742A38005AA4D5 /* AccessGroupTests.swift */; };
+		BC8C9B371D742A38005AA4D5 /* ClearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C9B341D742A38005AA4D5 /* ClearTests.swift */; };
+		BC8C9B381D742A38005AA4D5 /* SynchronizableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C9B351D742A38005AA4D5 /* SynchronizableTests.swift */; };
 		_LinkFileRef_Invoke_via_InvokeTestSuite /* Invoke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Invoke" /* Invoke.framework */; };
 		__src_cc_ref_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift */; };
 /* End PBXBuildFile section */
@@ -58,6 +63,11 @@
 		BC7BF1D81D6DED56004C2013 /* InvocationCounterSinceInstallation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceInstallation.swift; sourceTree = "<group>"; };
 		BC7BF1DA1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvocationCounterSinceEverTests.swift; sourceTree = "<group>"; };
 		BC7BF1DC1D6E19E7004C2013 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		BC8C9B2F1D7429BD005AA4D5 /* KeychainSwiftPrefixedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftPrefixedTests.swift; sourceTree = "<group>"; };
+		BC8C9B301D7429BD005AA4D5 /* KeychainSwiftTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainSwiftTests.swift; sourceTree = "<group>"; };
+		BC8C9B331D742A38005AA4D5 /* AccessGroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessGroupTests.swift; sourceTree = "<group>"; };
+		BC8C9B341D742A38005AA4D5 /* ClearTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearTests.swift; sourceTree = "<group>"; };
+		BC8C9B351D742A38005AA4D5 /* SynchronizableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizableTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Invoke.xcodeproj/Configs/Project.xcconfig /* Invoke.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Invoke.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_InvokeTestSuite_Info.plist /* Invoke.xcodeproj/InvokeTestSuite_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Invoke.xcodeproj/InvokeTestSuite_Info.plist; sourceTree = SOURCE_ROOT; };
 		__PBXFileRef_Invoke_Info.plist /* Invoke.xcodeproj/Invoke_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Invoke.xcodeproj/Invoke_Info.plist; sourceTree = SOURCE_ROOT; };
@@ -86,6 +96,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC8C9B2E1D742990005AA4D5 /* KeychainTests */ = {
+			isa = PBXGroup;
+			children = (
+				BC8C9B2F1D7429BD005AA4D5 /* KeychainSwiftPrefixedTests.swift */,
+				BC8C9B301D7429BD005AA4D5 /* KeychainSwiftTests.swift */,
+				BC8C9B331D742A38005AA4D5 /* AccessGroupTests.swift */,
+				BC8C9B341D742A38005AA4D5 /* ClearTests.swift */,
+				BC8C9B351D742A38005AA4D5 /* SynchronizableTests.swift */,
+			);
+			name = KeychainTests;
+			sourceTree = "<group>";
+		};
 		TestProducts_ /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +184,7 @@
 				719012F11D62131400A19FB7 /* UserDefaultsStubbed.swift */,
 				71C4EA8C1D6CF42A009D751D /* InvokeEveryTests.swift */,
 				71517A471D704B4C00EF3304 /* InvocationCounterMock.swift */,
+				BC8C9B2E1D742990005AA4D5 /* KeychainTests */,
 			);
 			name = InvokeTestSuite;
 			path = Tests/Invoke;
@@ -267,11 +290,16 @@
 			buildActionMask = 0;
 			files = (
 				714C440D1D60CE6000683F7D /* InvocationCounterSinceLaunchTests.swift in Sources */,
+				BC8C9B371D742A38005AA4D5 /* ClearTests.swift in Sources */,
+				BC8C9B321D7429BD005AA4D5 /* KeychainSwiftTests.swift in Sources */,
 				714C44111D60DC6B00683F7D /* InvocationCounterSinceInstallationTests.swift in Sources */,
 				71517A481D704B4C00EF3304 /* InvocationCounterMock.swift in Sources */,
+				BC8C9B381D742A38005AA4D5 /* SynchronizableTests.swift in Sources */,
 				714C44071D60A6B500683F7D /* InvokeOnceTests.swift in Sources */,
+				BC8C9B311D7429BD005AA4D5 /* KeychainSwiftPrefixedTests.swift in Sources */,
 				71C4EA8D1D6CF42A009D751D /* InvokeEveryTests.swift in Sources */,
 				__src_cc_ref_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift in Sources */,
+				BC8C9B361D742A38005AA4D5 /* AccessGroupTests.swift in Sources */,
 				BC7BF1DB1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift in Sources */,
 				719012F21D62131400A19FB7 /* UserDefaultsStubbed.swift in Sources */,
 			);
