@@ -63,6 +63,10 @@ extension Invoke {
         return handleUntilStopInvocation(invocationsCounter: invocationsCounterSinceLaunch, label: label, handler: handler)
     }
     
+    open class func untilStopSinceInstallation(label: String, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
+        return handleUntilStopInvocation(invocationsCounter: invocationsCounterSinceInstallation, label: label, handler: handler)
+    }
+    
     open class func untilStopSinceEver(label: String, handler: @escaping () -> Void) -> (start: () -> Void, stop: () -> Void) {
         return handleUntilStopInvocation(invocationsCounter: invocationsCounterSinceEver, label: label, handler: handler)
     }
