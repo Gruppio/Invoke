@@ -96,4 +96,17 @@ class InvocationCounterSinceEverTests: XCTestCase {
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label2), 0)
     }
     
+    func testUntilStopSinceEver() {
+        var invocationCounter = 0
+        let untilStop = Invoke.untilStopSinceEver(label: label1) {
+            invocationCounter += 1
+        }
+        untilStop.start()
+        untilStop.start()
+        XCTAssertEqual(invocationCounter, 2)
+        untilStop.stop()
+        untilStop.start()
+        XCTAssertEqual(invocationCounter, 2)
+    }
+    
 }
