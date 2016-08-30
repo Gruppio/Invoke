@@ -14,11 +14,6 @@ class InvokeOnceTests: XCTestCase {
     let label1 = "label1"
     let label2 = "label2"
     
-    let failHandler: () -> Void = {
-        XCTFail()
-    }
-
-    
     override func setUp() {
         super.setUp()
         Invoke.invocationsCounterSinceLaunch = InvocationCounterMock()

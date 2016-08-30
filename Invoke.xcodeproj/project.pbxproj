@@ -30,8 +30,8 @@
 		BC8C9B361D742A38005AA4D5 /* AccessGroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C9B331D742A38005AA4D5 /* AccessGroupTests.swift */; };
 		BC8C9B371D742A38005AA4D5 /* ClearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C9B341D742A38005AA4D5 /* ClearTests.swift */; };
 		BC8C9B381D742A38005AA4D5 /* SynchronizableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8C9B351D742A38005AA4D5 /* SynchronizableTests.swift */; };
+		BCA29D541D758A170016B058 /* InvokeResetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA29D531D758A170016B058 /* InvokeResetTests.swift */; };
 		_LinkFileRef_Invoke_via_InvokeTestSuite /* Invoke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "_____Product_Invoke" /* Invoke.framework */; };
-		__src_cc_ref_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = __PBXFileRef_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,11 +68,11 @@
 		BC8C9B331D742A38005AA4D5 /* AccessGroupTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessGroupTests.swift; sourceTree = "<group>"; };
 		BC8C9B341D742A38005AA4D5 /* ClearTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClearTests.swift; sourceTree = "<group>"; };
 		BC8C9B351D742A38005AA4D5 /* SynchronizableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizableTests.swift; sourceTree = "<group>"; };
+		BCA29D531D758A170016B058 /* InvokeResetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvokeResetTests.swift; sourceTree = "<group>"; };
 		__PBXFileRef_Invoke.xcodeproj/Configs/Project.xcconfig /* Invoke.xcodeproj/Configs/Project.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Invoke.xcodeproj/Configs/Project.xcconfig; sourceTree = "<group>"; };
 		__PBXFileRef_InvokeTestSuite_Info.plist /* Invoke.xcodeproj/InvokeTestSuite_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Invoke.xcodeproj/InvokeTestSuite_Info.plist; sourceTree = SOURCE_ROOT; };
 		__PBXFileRef_Invoke_Info.plist /* Invoke.xcodeproj/Invoke_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Invoke.xcodeproj/Invoke_Info.plist; sourceTree = SOURCE_ROOT; };
 		__PBXFileRef_Package.swift /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		__PBXFileRef_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvokeTests.swift; sourceTree = "<group>"; };
 		"_____Product_Invoke" /* Invoke.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Invoke.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"_____Product_InvokeTestSuite" /* InvokeTestSuite.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = InvokeTestSuite.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -175,9 +175,9 @@
 		"_______Group_InvokeTestSuite" /* InvokeTestSuite */ = {
 			isa = PBXGroup;
 			children = (
-				__PBXFileRef_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift */,
 				__PBXFileRef_InvokeTestSuite_Info.plist /* Invoke.xcodeproj/InvokeTestSuite_Info.plist */,
 				714C44061D60A6B500683F7D /* InvokeOnceTests.swift */,
+				BCA29D531D758A170016B058 /* InvokeResetTests.swift */,
 				714C440C1D60CE6000683F7D /* InvocationCounterSinceLaunchTests.swift */,
 				714C44101D60DC6B00683F7D /* InvocationCounterSinceInstallationTests.swift */,
 				BC7BF1DA1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift */,
@@ -290,6 +290,7 @@
 			buildActionMask = 0;
 			files = (
 				714C440D1D60CE6000683F7D /* InvocationCounterSinceLaunchTests.swift in Sources */,
+				BCA29D541D758A170016B058 /* InvokeResetTests.swift in Sources */,
 				BC8C9B371D742A38005AA4D5 /* ClearTests.swift in Sources */,
 				BC8C9B321D7429BD005AA4D5 /* KeychainSwiftTests.swift in Sources */,
 				714C44111D60DC6B00683F7D /* InvocationCounterSinceInstallationTests.swift in Sources */,
@@ -298,7 +299,6 @@
 				714C44071D60A6B500683F7D /* InvokeOnceTests.swift in Sources */,
 				BC8C9B311D7429BD005AA4D5 /* KeychainSwiftPrefixedTests.swift in Sources */,
 				71C4EA8D1D6CF42A009D751D /* InvokeEveryTests.swift in Sources */,
-				__src_cc_ref_Tests/Invoke/InvokeTests.swift /* InvokeTests.swift in Sources */,
 				BC8C9B361D742A38005AA4D5 /* AccessGroupTests.swift in Sources */,
 				BC7BF1DB1D6E18C4004C2013 /* InvocationCounterSinceEverTests.swift in Sources */,
 				719012F21D62131400A19FB7 /* UserDefaultsStubbed.swift in Sources */,

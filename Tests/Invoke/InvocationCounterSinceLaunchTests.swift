@@ -94,4 +94,17 @@ class InvocationCounterSinceLaunchTests: XCTestCase {
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label2), 0)
     }
     
+    func testUntilStopSinceLaunch() {
+        var invocationCounter = 0
+        let untilStop = Invoke.untilStopSinceLaunch(label: label1) {
+            invocationCounter += 1
+        }
+        untilStop.start()
+        untilStop.start()
+        XCTAssertEqual(invocationCounter, 2)
+        untilStop.stop()
+        untilStop.start()
+        XCTAssertEqual(invocationCounter, 2)
+    }
+    
 }

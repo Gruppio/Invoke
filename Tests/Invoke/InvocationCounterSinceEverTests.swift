@@ -14,6 +14,13 @@ class InvocationCounterSinceEverTests: XCTestCase {
     let label1 = "label1"
     let label2 = "label2"
     
+    override func setUp() {
+        super.setUp()
+        Invoke.invocationsCounterSinceLaunch = InvocationCounterMock()
+        Invoke.invocationsCounterSinceInstallation = InvocationCounterMock()
+        Invoke.invocationsCounterSinceEver = InvocationCounterMock()
+    }
+    
     func createInvocationCounter() -> InvocationCounter {
         let invocationCounter = InvocationCounterSinceEver(keychainPrefix: "tests")
         invocationCounter.resetAll()
@@ -94,6 +101,19 @@ class InvocationCounterSinceEverTests: XCTestCase {
         XCTAssertEqual(invocationCounter.allInvocationsLabels.count, 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label1), 0)
         XCTAssertEqual(invocationCounter.numberOfInvocations(of: label2), 0)
+    }
+    
+    func testUntilStopSinceEver() {
+        var invocationCounter = 0
+        let untilStop = Invoke.untilStopSinceEver(label: label1) {
+            invocationCounter += 1
+        }
+        untilStop.start()
+        untilStop.start()
+        XCTAssertEqual(invocationCounter, 2)
+        untilStop.stop()
+        untilStop.start()
+        XCTAssertEqual(invocationCounter, 2)
     }
     
 }
