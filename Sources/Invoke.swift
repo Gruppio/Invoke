@@ -135,7 +135,7 @@ extension Invoke {
         invocationsCounterSinceLaunch.reset(label: label)
     }
     
-    open class func resetInvocationsSinceInstllation(label: String) {
+    open class func resetInvocationsSinceInstallation(label: String) {
         invocationsCounterSinceInstallation.reset(label: label)
     }
     

@@ -14,6 +14,13 @@ class InvocationCounterSinceEverTests: XCTestCase {
     let label1 = "label1"
     let label2 = "label2"
     
+    override func setUp() {
+        super.setUp()
+        Invoke.invocationsCounterSinceLaunch = InvocationCounterMock()
+        Invoke.invocationsCounterSinceInstallation = InvocationCounterMock()
+        Invoke.invocationsCounterSinceEver = InvocationCounterMock()
+    }
+    
     func createInvocationCounter() -> InvocationCounter {
         let invocationCounter = InvocationCounterSinceEver(keychainPrefix: "tests")
         invocationCounter.resetAll()

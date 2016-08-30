@@ -14,6 +14,13 @@ class InvocationCounterSinceInstallationTests: XCTestCase {
     let label1 = "label1"
     let label2 = "label2"
     
+    override func setUp() {
+        super.setUp()
+        Invoke.invocationsCounterSinceLaunch = InvocationCounterMock()
+        Invoke.invocationsCounterSinceInstallation = InvocationCounterMock()
+        Invoke.invocationsCounterSinceEver = InvocationCounterMock()
+    }
+    
     func createInvocationCounter(userDefaultsValues: [String : AnyObject]) -> InvocationCounter {
         let userDefaults = UserDefaultsStubbed()
         userDefaults.storedData = userDefaultsValues
@@ -107,6 +114,7 @@ class InvocationCounterSinceInstallationTests: XCTestCase {
     }
     
     func testUntilStopSinceInstallation() {
+        
         var invocationCounter = 0
         let untilStop = Invoke.untilStopSinceInstallation(label: label1) {
             invocationCounter += 1
