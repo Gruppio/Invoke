@@ -14,12 +14,25 @@ class InvokeEveryTests: XCTestCase {
     let label = "invoke_every_test"
     
     func testTimerInvocationsWorks() {
-        var handlerInvoked = false
-        let timer = Invoke.every(label: label, 0.000001) {
-            handlerInvoked = true
+        
+        var handlerInvoked = 0
+        let timer = Invoke.every(label: label, 0.1) {
+            handlerInvoked += 1
         }
         
         timer.start()
-        XCTAssertEqual(handlerInvoked, true)
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.25))
+        
+        XCTAssertEqual(handlerInvoked, 3)
+        timer.stop()
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.25))
+        
+        XCTAssertEqual(handlerInvoked, 3)
+        timer.release()
+        timer.start()
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.25))
+        
+        XCTAssertEqual(handlerInvoked, 3)
+        
     }
 }
